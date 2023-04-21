@@ -5,6 +5,20 @@ const nextConfig = {
 	reactStrictMode: true,
 	sassOptions: {
 		includePaths: [path.resolve(__dirname, './pages')]
+	},
+	webpack: (config) => {
+		console.log('config:', config);
+		config.module.rules.push({
+			test: /\.m?js$/,
+			exclude: /node_modules/,
+			use: {
+				loader: 'babel-loader',
+				options: {
+					presets: ['@babel/preset-env']
+				}
+			}
+		});
+		return config;
 	}
 };
 
