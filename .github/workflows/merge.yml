@@ -16,14 +16,14 @@ jobs:
           ref: 'main'
           fetch-depth: '0'
 
-      - name: Merge dev branch
-        run: |
-          git merge origin/dev --no-edit
-
       - name: Configure Git
         run: |
           git config user.name JinWoo_Lee
           git config user.email dlwlsdn201@naver.com
+
+      - name: Merge dev branch
+        run: |
+          git merge origin/dev --no-edit
 
       - name: Push changes to main branch
         uses: ad-m/github-push-action@master
