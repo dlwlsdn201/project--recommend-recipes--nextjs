@@ -1,0 +1,29 @@
+{
+	"presets": [
+		["@babel/preset-env", { "targets": { "node": "current" } }],
+		"@babel/preset-typescript",
+		"next/babel"
+	],
+	"plugins": [
+		[
+			"module-resolver",
+			{
+				"root": ["."],
+				"alias": {
+					"styles": "./styles"
+				},
+				"cwd": "babelrc"
+			}
+		],
+		["@babel/plugin-transform-modules-commonjs", { "allowTopLevelThis": true }],
+		// [
+		// 	"wrap-in-js",
+		// 	{
+		// 		"extensions": ["css$", "scss$"]
+		// 	}
+		// ],
+		["@babel/plugin-proposal-optional-chaining"],
+		["@babel/plugin-syntax-jsx"]
+	],
+	"ignore": []
+}

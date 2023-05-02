@@ -7,7 +7,6 @@ const nextConfig = {
 		includePaths: [path.resolve(__dirname, './pages')]
 	},
 	webpack: (config) => {
-		console.log('config:', config);
 		config.module.rules.push({
 			test: /\.m?js$/,
 			exclude: /node_modules/,
