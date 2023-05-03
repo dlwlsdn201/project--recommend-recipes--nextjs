@@ -1,8 +1,12 @@
 {
 	"presets": [
-		["@babel/preset-env", { "targets": { "node": "current" } }],
+		[
+			"@babel/preset-env",
+			{ "targets": { "node": "current" }, "modules": false }
+		],
 		"@babel/preset-typescript",
-		"next/babel"
+		["@babel/preset-react", { "runtime": "automatic" }]
+		// "next/babel"
 	],
 	"plugins": [
 		[
@@ -16,12 +20,6 @@
 			}
 		],
 		["@babel/plugin-transform-modules-commonjs", { "allowTopLevelThis": true }],
-		// [
-		// 	"wrap-in-js",
-		// 	{
-		// 		"extensions": ["css$", "scss$"]
-		// 	}
-		// ],
 		["@babel/plugin-proposal-optional-chaining"],
 		["@babel/plugin-syntax-jsx"]
 	],
