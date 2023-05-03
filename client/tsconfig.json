@@ -21,6 +21,7 @@
 			"@/styles": ["./styles/*"],
 			"@/components": ["./components/*"],
 			"@/pages": ["./pages/*"],
+			"@/images": ["./public/images/*"]
 		}
 	},
 	"include": [
