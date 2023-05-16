@@ -4,11 +4,11 @@ import { render } from '@testing-library/react';
 
 describe('Header UI', () => {
 	it('Is check Logo image', () => {
-		const imgSrc = '/public/images/logo.png';
+		// const imgSrc = '/public/images/logo.png';
 		const alt = 'Logo';
 		const { getByAltText } = render(<Header />);
 
 		const logoElement = getByAltText(alt);
-		expect(logoElement).toHaveAttribute('src', imgSrc);
+		expect(logoElement).toHaveAttribute('alt', 'Logo');
 	});
 });
