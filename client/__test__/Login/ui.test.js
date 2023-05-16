@@ -1,21 +1,25 @@
 import { describe, it } from '@jest/globals';
 import Login from '@/components/Login';
 import { render, screen } from '@testing-library/react';
+import { RecoilRoot } from 'recoil';
+
+function renderHooks(Component) {
+	render(<RecoilRoot>{Component}</RecoilRoot>);
+}
 
 describe('Login Component', () => {
 	it('renders title element', () => {
-		render(<Login />);
+		renderHooks(<Login />);
 		const titleElement = screen.getByRole('heading', {
 			level: 2,
-			name: /Sign in to your account/i
+			name: /로 그 인/i
 		});
 
 		expect(titleElement).toBeInTheDocument();
-		expect(1 + 1).toBe(2);
 	});
 
 	test('renders email input element', () => {
-		render(<Login />);
+		renderHooks(<Login />);
 		const emailInputElement = screen.getByLabelText(/email address/i);
 		expect(emailInputElement).toBeInTheDocument();
 		expect(emailInputElement).toHaveAttribute('type', 'email');
@@ -23,10 +27,16 @@ describe('Login Component', () => {
 	});
 
 	test('renders password input element', () => {
-		render(<Login />);
+		renderHooks(<Login />);
 		const passwordInputElement = screen.getByLabelText(/password/i);
 		expect(passwordInputElement).toBeInTheDocument();
 		expect(passwordInputElement).toHaveAttribute('type', 'password');
 		expect(passwordInputElement).toHaveAttribute('required');
+	});
+
+	test.only('renders SNS Login UI', () => {
+		renderHooks(<Login />);
+		const snsElement = screen.getByTestId('sns-login');
+		expect(snsElement).toBeInTheDocument();
 	});
 });
