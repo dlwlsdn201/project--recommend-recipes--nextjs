@@ -2,6 +2,7 @@ import { Fragment, useState } from 'react';
 import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
+import Navbar from './Modules/Navbar';
 
 export default function Example() {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -23,7 +24,7 @@ export default function Example() {
 					</a>
 					<h3 className='text-white text-xl ml-2'>냉장고를 부탁해</h3>
 				</div>
-				<div className='flex laptop:hidden'>
+				<div className='flex tablet:hidden'>
 					<button
 						type='button'
 						className='-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700'
@@ -32,7 +33,8 @@ export default function Example() {
 						<Bars3Icon className='h-6 w-6' aria-hidden='true' />
 					</button>
 				</div>
-				<Popover.Group className='hidden laptop:flex laptop:gap-x-12'>
+				<Navbar />
+				{/* <Popover.Group className='hidden laptop:flex laptop:gap-x-12'>
 					<a href='#' className='text-sm font-semibold leading-6 text-white'>
 						Home
 					</a>
@@ -42,7 +44,7 @@ export default function Example() {
 					<a href='#' className='text-sm font-semibold leading-6 text-white'>
 						Contact
 					</a>
-				</Popover.Group>
+				</Popover.Group> */}
 				<div className='hidden laptop:flex laptop:flex-1 laptop:justify-end'>
 					<a href='#' className='text-sm font-semibold leading-6 text-white'>
 						Log in <span aria-hidden='true'>&rarr;</span>
