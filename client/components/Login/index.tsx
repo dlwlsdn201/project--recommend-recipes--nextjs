@@ -1,21 +1,16 @@
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { loginStore } from '@/source/store';
 import SnsLogin from './Sns';
-import { userIdState } from '../../source/atoms';
-import Image from 'next/image';
 
 const Login = () => {
-	const [userId, setUserId] = useRecoilState(userIdState);
+	const { userId, setUserId } = loginStore();
 
-	console.log('userId:', userId);
 	return (
 		<div className='flex min-h-full flex-1 flex-col justify-center px-6 py-12 laptop:px-8'>
 			<div className='mobile:mx-auto mobile:w-full mobile:max-w-sm'>
-				<Image
+				<img
 					className='mx-auto h-10 w-auto'
 					src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600'
 					alt='Your Company'
-					width={200}
-					height={200}
 				/>
 				{/* <img
 				/> */}
@@ -38,7 +33,10 @@ const Login = () => {
 								name='email'
 								type='email'
 								autoComplete='email'
-								onChange={(e) => setUserId(e.target.value)}
+								onChange={(e) => {
+									setUserId(e.target.value);
+								}}
+								// onChange={(e) => onChange(e.target.value)}
 								required
 								className='block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 mobile:text-sm mobile:leading-6'
 							/>
