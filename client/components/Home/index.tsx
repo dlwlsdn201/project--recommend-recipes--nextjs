@@ -1,5 +1,16 @@
 import React from 'react';
+import Select from '../Modules/Select';
+import {
+	conceptFilterItems,
+	menuTypeFilterItems,
+	spicyFilterItems
+} from './Filters';
+import TextInput from '../Modules/TextInput';
+import { mainStore } from '@/source/store';
+
 const MainComponent = () => {
+	const { setSpicyFilter, setMenuTypeFilter, setConceptFilter, setMaterials } =
+		mainStore();
 	return (
 		<div className='root-container border-red-400 border-2 p-2'>
 			<div className='inner-container grid gap-6 grid-cols-5 grid-rows-1 border-blue-300 border-2'>
@@ -25,7 +36,74 @@ const MainComponent = () => {
 					<div className='filters--wrapper'>
 						<div className='filter--block'>
 							<div className='label'>맵기 정도</div>
-							<div className='filter'></div>
+							<div className='filter'>
+								<Select
+									options={spicyFilterItems}
+									isExistAll
+									onChange={(value) => {
+										console.log('value:', value);
+										setSpicyFilter(value);
+									}}
+								/>
+							</div>
+						</div>
+						<div className='filter--block'>
+							<div className='label'>종류</div>
+							<div className='filter'>
+								<Select
+									options={menuTypeFilterItems}
+									isExistAll
+									onChange={setMenuTypeFilter}
+								/>
+							</div>
+						</div>
+						<div className='filter--block'>
+							<div className='label'>목적</div>
+							<div className='filter'>
+								<Select
+									options={conceptFilterItems}
+									isExistAll
+									onChange={setConceptFilter}
+								/>
+							</div>
+						</div>
+					</div>
+					<div className='fillter--wrapper'>
+						<div className='filter--block'>
+							<div className='label'>재료1</div>
+							<div className='filter'>
+								<TextInput
+									placeholder='입력'
+									onChange={(value) => setMaterials('material1', value)}
+								/>
+							</div>
+						</div>
+						<div className='filter--block'>
+							<div className='label'>재료2</div>
+							<div className='filter'>
+								<TextInput
+									placeholder='입력'
+									onChange={(value) => setMaterials('material2', value)}
+								/>
+							</div>
+						</div>
+						<div className='filter--block'>
+							<div className='label'>재료3</div>
+							<div className='filter'>
+								<TextInput
+									placeholder='입력'
+									onChange={(value) => setMaterials('material3', value)}
+								/>
+							</div>
+						</div>
+						<div className='filter--block'>
+							<div className='label'>재료4</div>
+							<div className='filter'>
+								<TextInput
+									placeholder='입력'
+									onChange={(value) => setMaterials('material4', value)}
+								/>
+							</div>
 						</div>
 					</div>
 				</div>

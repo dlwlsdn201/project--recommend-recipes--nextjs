@@ -10,8 +10,8 @@ const TextInput = ({ placeholder, onChange }: TextInputProps): JSX.Element => {
 		<input
 			type='text'
 			placeholder={placeholder}
-			onChange={(e) => onChange(e.target)}
-			className='input input-bordered input-primary w-full max-w-xs'
+			onChange={(e) => onChange(e.target.value)}
+			className='input input-bordered input-primary w-full max-w-xs text-black'
 		/>
 	);
 };

@@ -8,11 +8,18 @@ export type optionType = {
 interface SelectProps {
 	options: Array<optionType>;
 	isExistAll?: Boolean;
+	onChange: Function;
 }
 
-const Select = ({ options, isExistAll }: SelectProps): JSX.Element => {
+const Select = ({
+	options,
+	isExistAll,
+	onChange
+}: SelectProps): JSX.Element => {
 	return (
-		<select className='select w-full max-w-xs text-black'>
+		<select
+			className='select w-full max-w-xs text-black'
+			onChange={(e) => onChange(e.currentTarget.value)}>
 			{/* <option disabled selected>
 				Pick your favorite Simpson
 			</option> */}
