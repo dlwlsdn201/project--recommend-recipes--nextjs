@@ -18,7 +18,7 @@ const Select = ({
 }: SelectProps): JSX.Element => {
 	return (
 		<select
-			className='select w-full max-w-xs text-black'
+			className='select w-full max-w-xs'
 			onChange={(e) => onChange(e.currentTarget.value)}>
 			{/* <option disabled selected>
 				Pick your favorite Simpson
