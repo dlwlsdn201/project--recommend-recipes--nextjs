@@ -13,11 +13,11 @@ export const loginStore = create<INTERFACE_loginStore>((set) => ({
 }));
 
 export const mainStore = create<INTERFACE_mainStore>((set) => ({
-	spicyFilter: undefined,
+	spicyFilter: 'all',
 	setSpicyFilter: (value: number) => set(() => ({ spicyFilter: value })),
-	menuTypeFilter: undefined,
+	menuTypeFilter: 'all',
 	setMenuTypeFilter: (value: number) => set(() => ({ menuTypeFilter: value })),
-	conceptFilter: undefined,
+	conceptFilter: 'all',
 	setConceptFilter: (value: number) => set(() => ({ conceptFilter: value })),
 	material1: undefined,
 	material2: undefined,

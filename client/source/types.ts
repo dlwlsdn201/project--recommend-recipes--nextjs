@@ -6,11 +6,11 @@ export interface INTERFACE_loginStore {
 }
 
 export interface INTERFACE_mainStore {
-	spicyFilter: number;
+	spicyFilter: number | 'all';
 	setSpicyFilter: Function;
-	menuTypeFilter: number;
+	menuTypeFilter: number | 'all';
 	setMenuTypeFilter: Function;
-	conceptFilter: number;
+	conceptFilter: number | 'all';
 	setConceptFilter: Function;
 	material1: string;
 	material2: string;
