@@ -12,17 +12,26 @@ import Primary from '../Modules/Buttons/Primary';
 const MainComponent = () => {
 	const { setSpicyFilter, setMenuTypeFilter, setConceptFilter, setMaterials } =
 		mainStore();
+
+	const onFinishForm = async () => {
+		try {
+			console.log('추천 받기');
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 	return (
 		<div className='root-container h-[100%] border-red-400 border-2 p-2'>
 			<div className='inner-container h-[100%] grid gap-6 tablet:grid-cols-5 grid-cols-1 grid-rows-1 border-blue-300 border-2'>
 				<div className='area--left border-green-400 border-2 col-span-2 p-8 flex items-start'>
 					<div className='inner-wrapper h-fit'>
-						<div className='title text-3xl'>
+						<div className='title mobile:text-lg laptop:text-3xl'>
 							<strong>
 								당신의 집에 있는 재료들로 무엇을 만들 수 있을까요?
 							</strong>
 						</div>
-						<div className='desc text-xl'>
+						<div className='desc mobile:text-sm laptop:text-xl'>
 							<p className='my-8'>
 								작성한 재료들과 선택한 음식 종류를 기반으로 chatGPT 가 추천 음식
 								레시피 몇 가지를 소개해 줄 것입니다.
@@ -42,8 +51,8 @@ const MainComponent = () => {
 					</div>
 				</div>
 				<div className='area--right border-yellow-400 border-2 col-span-3 p-8'>
-					<div className='inner-wrapper grid grid-cols-1 gap-8'>
-						<div className='filters--wrapper grid tablet:grid-cols-3 mobile:grid-cols-1 gap-5'>
+					<div className='inner-wrapper grid grid-rows-12 grid-cols-1 gap-8'>
+						<div className='filters--wrapper grid row-start-1 tablet:grid-cols-3 mobile:grid-cols-1 gap-5'>
 							<div className='filter--block'>
 								<div className='label'>맵기 정도</div>
 								<div className='filter'>
@@ -78,7 +87,7 @@ const MainComponent = () => {
 								</div>
 							</div>
 						</div>
-						<div className='filters--wrapper grid grid-cols-2 gap-5 justify-stretch'>
+						<div className='filters--wrapper grid row-start-2 grid-cols-2 gap-5 justify-stretch'>
 							<div className='filter--block'>
 								<div className='label'>재료1</div>
 								<div className='filter'>
@@ -116,9 +125,9 @@ const MainComponent = () => {
 								</div>
 							</div>
 						</div>
-						<div className='filters--wrapper grid grid-cols-1'>
+						<div className='filters--wrapper grid row-start-4 grid-cols-1'>
 							<div className='submit--block auto-cols-max'>
-								<Primary label='추천 받기' />
+								<Primary label='추천 받기' onSubmit={onFinishForm} />
 							</div>
 						</div>
 					</div>
