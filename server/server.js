@@ -6,7 +6,7 @@ const { Configuration, OpenAIApi } = require('openai');
 
 const configuration = new Configuration({
 	organization: 'org-UTqoP6O0CK7qqnFxn9CNHmhi',
-	apiKey: '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'
+	apiKey: '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'
 });
 const openai = new OpenAIApi(configuration);
 
@@ -18,12 +18,12 @@ app.use(cors());
 // Set up the ChatGPT endpoint
 app.post('/chat', async (req, res) => {
 	// Get the prompt from the request
-	const { prompt } = req.body;
+	const { userInput } = req.body;
 
 	// Generate a response with ChatGPT
 	const completion = await openai.createCompletion({
 		model: 'text-davinci-003',
-		prompt: 'how can you learn English?',
+		prompt: userInput,
 		max_tokens: 300,
 		temperature: 0.2
 	});
