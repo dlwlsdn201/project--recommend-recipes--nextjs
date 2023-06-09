@@ -13,17 +13,21 @@ export const loginStore = create<INTERFACE_loginStore>((set) => ({
 }));
 
 export const mainStore = create<INTERFACE_mainStore>((set) => ({
-	spicyFilter: 'all',
-	setSpicyFilter: (value: number) => set(() => ({ spicyFilter: value })),
-	menuTypeFilter: 'all',
-	setMenuTypeFilter: (value: number) => set(() => ({ menuTypeFilter: value })),
-	conceptFilter: 'all',
-	setConceptFilter: (value: number) => set(() => ({ conceptFilter: value })),
+	spicyFilter: 0,
+	setSpicyFilter: (value: 0 | 1 | 2 | 3) => set(() => ({ spicyFilter: value })),
+	menuTypeFilter: 0,
+	setMenuTypeFilter: (value: 0 | 1 | 2 | 3 | 4) =>
+		set(() => ({ menuTypeFilter: value })),
+	conceptFilter: 0,
+	setConceptFilter: (value: 0 | 1 | 2 | 3 | 4 | 5 | 6) =>
+		set(() => ({ conceptFilter: value })),
 	material1: undefined,
 	material2: undefined,
 	material3: undefined,
 	material4: undefined,
-	setMaterials: (key: string, value: string) => set(() => ({ [key]: value }))
+	setMaterials: (key: string, value: string) => set(() => ({ [key]: value })),
+	loading: false,
+	setLoading: (value) => set(() => ({ loading: value }))
 }));
 
 // const hookDevtools = (store) => create(devtools(store));

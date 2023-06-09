@@ -6,15 +6,17 @@ export interface INTERFACE_loginStore {
 }
 
 export interface INTERFACE_mainStore {
-	spicyFilter: number | 'all';
+	spicyFilter: 0 | 1 | 2 | 3;
 	setSpicyFilter: Function;
-	menuTypeFilter: number | 'all';
+	menuTypeFilter: 0 | 1 | 2 | 3 | 4;
 	setMenuTypeFilter: Function;
-	conceptFilter: number | 'all';
+	conceptFilter: 0 | 1 | 2 | 3 | 4 | 5 | 6;
 	setConceptFilter: Function;
-	material1: string;
-	material2: string;
-	material3: string;
-	material4: string;
+	material1: String;
+	material2: String;
+	material3: String;
+	material4: String;
 	setMaterials: Function;
+	loading: Boolean;
+	setLoading: Function;
 }
