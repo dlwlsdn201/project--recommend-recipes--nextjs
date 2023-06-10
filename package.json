@@ -11,6 +11,6 @@
 		"client:dev": "yarn workspace client dev",
 		"client:build": "yarn workspace client next build",
 		"client:test": "yarn workspace client test",
-		"server": "yarn workspace server start"
+		"server": "yarn workspace server start server.js"
 	}
 }

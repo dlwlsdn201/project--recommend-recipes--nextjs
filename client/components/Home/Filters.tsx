@@ -3,6 +3,10 @@ import { optionType } from '../Modules/Select';
 // 맵기 정도 필터
 export const spicyFilterItems: optionType[] = [
 	{
+		label: '전체',
+		value: 0
+	},
+	{
 		label: '순한맛',
 		value: 1
 	},
@@ -17,6 +21,10 @@ export const spicyFilterItems: optionType[] = [
 ];
 
 export const menuTypeFilterItems: optionType[] = [
+	{
+		label: '전체',
+		value: 0
+	},
 	{
 		label: '한식',
 		value: 1
@@ -36,6 +44,10 @@ export const menuTypeFilterItems: optionType[] = [
 ];
 
 export const conceptFilterItems: optionType[] = [
+	{
+		label: '전체',
+		value: 0
+	},
 	{
 		label: '아침',
 		value: 1

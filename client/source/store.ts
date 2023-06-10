@@ -27,7 +27,13 @@ export const mainStore = create<INTERFACE_mainStore>((set) => ({
 	material4: undefined,
 	setMaterials: (key: string, value: string) => set(() => ({ [key]: value })),
 	loading: false,
-	setLoading: (value) => set(() => ({ loading: value }))
+	setLoading: (value) => set(() => ({ loading: value })),
+	apiData: undefined,
+	setApiData: (value) => set(() => ({ apiData: value })),
+	modal: true,
+	setModal: (value) => set(() => ({ modal: value })),
+	isRequested: false,
+	setIsRequested: (value) => set(() => ({ isRequested: value }))
 }));
 
 // const hookDevtools = (store) => create(devtools(store));

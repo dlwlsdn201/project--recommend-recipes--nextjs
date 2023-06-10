@@ -12,11 +12,17 @@ export interface INTERFACE_mainStore {
 	setMenuTypeFilter: Function;
 	conceptFilter: 0 | 1 | 2 | 3 | 4 | 5 | 6;
 	setConceptFilter: Function;
-	material1: String;
-	material2: String;
-	material3: String;
-	material4: String;
+	material1: string;
+	material2: string;
+	material3: string;
+	material4: string;
 	setMaterials: Function;
-	loading: Boolean;
+	loading: boolean;
 	setLoading: Function;
+	apiData: string;
+	setApiData: Function;
+	modal: boolean;
+	setModal: Function;
+	isRequested: boolean;
+	setIsRequested: Function;
 }

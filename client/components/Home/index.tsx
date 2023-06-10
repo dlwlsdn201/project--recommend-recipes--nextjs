@@ -31,7 +31,10 @@ const MainComponent = () => {
 		loading,
 		setLoading,
 		apiData,
-		setApiData
+		setApiData,
+		isRequested,
+		setIsRequested,
+		setModal
 	} = mainStore();
 
 	// === update state
@@ -39,10 +42,19 @@ const MainComponent = () => {
 		setApiData(value);
 	};
 
+	const updateSucceed = () => {
+		setLoading(false);
+		setIsRequested(true);
+		setModal(true);
+	};
+	const updateFailed = () => {
+		setLoading(false);
+		setIsRequested(false);
+	};
+
 	// Chat GPT OpenAI API 요청 함수
 	const onFinishForm = async () => {
 		try {
-			console.log('추천 받기');
 			setLoading(true);
 			// 사용자 입력 값 전달 및 응답 받기
 			const inputValues = {
@@ -56,13 +68,12 @@ const MainComponent = () => {
 				userInput: formattedUserInput
 			});
 			if (response.status >= 200 && response.status < 300) {
-				console.log({ response });
 				updateResult(response?.data?.choices[0]?.text);
 				// const formattedResult = formatResult(response?.data?.choices[0]?.text);
-				setLoading(false);
+				updateSucceed();
 			}
 		} catch (error) {
-			setLoading(false);
+			updateFailed();
 			console.error(error);
 		}
 	};
@@ -196,7 +207,6 @@ const MainComponent = () => {
 								</div>
 							</div>
 						</div>
-						<div>{formatResult(apiData)}</div>
 					</Loading>
 				</div>
 			</div>
