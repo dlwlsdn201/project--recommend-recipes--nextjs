@@ -10,20 +10,22 @@ interface SelectProps {
 	isExistAll?: Boolean;
 	onChange: Function;
 	value: number;
+	testId: string;
 }
 
 const Select = ({
 	options,
 	isExistAll,
 	onChange,
-	value
+	value,
+	testId
 }: SelectProps): JSX.Element => {
 	return (
 		<select
+			data-testid={testId}
 			className='select w-full max-w-xs'
 			onChange={(e) => onChange(e.currentTarget.value)}
-			defaultValue={0}
-			value={value}>
+			value={value ?? 0}>
 			{/* <option disabled selected>
 				Pick your favorite Simpson
 			</option> */}

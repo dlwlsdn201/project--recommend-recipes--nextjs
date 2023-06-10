@@ -22,7 +22,8 @@
 			"@/source": ["./source/*"],
 			"@/components": ["./components/*"],
 			"@/pages": ["./pages/*"],
-			"@/images": ["./public/images/*"]
+			"@/images": ["./public/images/*"],
+			"@/api": ["./api/*"]
 		}
 	},
 	"include": [

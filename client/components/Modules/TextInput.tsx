@@ -4,15 +4,18 @@ interface TextInputProps {
 	placeholder: string;
 	value: string;
 	onChange: Function;
+	testId: string;
 }
 
 const TextInput = ({
 	placeholder,
 	value,
-	onChange
+	onChange,
+	testId
 }: TextInputProps): JSX.Element => {
 	return (
 		<input
+			data-testid={testId}
 			type='text'
 			placeholder={placeholder}
 			onChange={(e) => onChange(e.target.value)}

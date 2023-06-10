@@ -8,7 +8,12 @@ import {
 import TextInput from '../Modules/TextInput';
 import { mainStore } from '@/source/store';
 import Primary from '../Modules/Buttons/Primary';
+import * as dotenv from 'dotenv';
+import { CREATE_RECOMMEND_RECIPES } from '../../api';
+import { formatInputDataToRequest, formatResult } from './Handlers';
 import Loading from '../Modules/Loading';
+
+dotenv.config({ path: __dirname + '/client/.env' });
 
 const MainComponent = () => {
 	const {
@@ -24,8 +29,16 @@ const MainComponent = () => {
 		setConceptFilter,
 		setMaterials,
 		loading,
-		setLoading
+		setLoading,
+		apiData,
+		setApiData
 	} = mainStore();
+
+	// === update state
+	const updateResult = (value: String): void => {
+		setApiData(value);
+	};
+
 	// Chat GPT OpenAI API 요청 함수
 	const onFinishForm = async () => {
 		try {
@@ -44,6 +57,8 @@ const MainComponent = () => {
 			});
 			if (response.status >= 200 && response.status < 300) {
 				console.log({ response });
+				updateResult(response?.data?.choices[0]?.text);
+				// const formattedResult = formatResult(response?.data?.choices[0]?.text);
 				setLoading(false);
 			}
 		} catch (error) {
@@ -51,11 +66,12 @@ const MainComponent = () => {
 			console.error(error);
 		}
 	};
-
 	return (
 		<div className='root-container h-[100%] border-red-400 border-2 p-2'>
 			<div className='inner-container grid gap-6 tablet:grid-cols-5 grid-cols-1 grid-rows-1 border-blue-300 border-2'>
-				<div className='area--left border-green-400 border-2 col-span-2 p-8 flex items-start'>
+				<div
+					className='area--left border-green-400 border-2 col-span-2 p-8 flex items-start'
+					data-testid='homePage-description'>
 					<div className='inner-wrapper h-fit'>
 						<div className='title mobile:text-lg laptop:text-3xl'>
 							<strong>
@@ -89,6 +105,7 @@ const MainComponent = () => {
 									<div className='label'>맵기 정도</div>
 									<div className='filter'>
 										<Select
+											testId='homePage-filter-spicy'
 											value={spicyFilter}
 											options={spicyFilterItems}
 											isExistAll
@@ -102,6 +119,7 @@ const MainComponent = () => {
 									<div className='label'>종류</div>
 									<div className='filter'>
 										<Select
+											testId='homePage-filter-menuType'
 											value={menuTypeFilter}
 											options={menuTypeFilterItems}
 											isExistAll
@@ -113,6 +131,7 @@ const MainComponent = () => {
 									<div className='label'>목적</div>
 									<div className='filter'>
 										<Select
+											testId='homePage-filter-concept'
 											value={conceptFilter}
 											options={conceptFilterItems}
 											isExistAll
@@ -126,6 +145,7 @@ const MainComponent = () => {
 									<div className='label'>재료1</div>
 									<div className='filter'>
 										<TextInput
+											testId='homePage-input-material1'
 											placeholder='입력'
 											onChange={(value) => setMaterials('material1', value)}
 											value={material1}
@@ -136,6 +156,7 @@ const MainComponent = () => {
 									<div className='label'>재료2</div>
 									<div className='filter'>
 										<TextInput
+											testId='homePage-input-material2'
 											placeholder='입력'
 											onChange={(value) => setMaterials('material2', value)}
 											value={material2}
@@ -146,6 +167,7 @@ const MainComponent = () => {
 									<div className='label'>재료3</div>
 									<div className='filter'>
 										<TextInput
+											testId='homePage-input-material3'
 											placeholder='입력'
 											onChange={(value) => setMaterials('material3', value)}
 											value={material3}
@@ -156,6 +178,7 @@ const MainComponent = () => {
 									<div className='label'>재료4</div>
 									<div className='filter'>
 										<TextInput
+											testId='homePage-input-material4'
 											placeholder='입력'
 											onChange={(value) => setMaterials('material4', value)}
 											value={material4}
@@ -165,10 +188,15 @@ const MainComponent = () => {
 							</div>
 							<div className='filters--wrapper grid row-start-4 grid-cols-1'>
 								<div className='submit--block auto-cols-max'>
-									<Primary label='추천 받기' onSubmit={onFinishForm} />
+									<Primary
+										label='추천 받기'
+										onSubmit={onFinishForm}
+										testId='homePage-submit-button'
+									/>
 								</div>
 							</div>
 						</div>
+						<div>{formatResult(apiData)}</div>
 					</Loading>
 				</div>
 			</div>
