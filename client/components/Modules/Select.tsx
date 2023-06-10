@@ -9,21 +9,25 @@ interface SelectProps {
 	options: Array<optionType>;
 	isExistAll?: Boolean;
 	onChange: Function;
+	value: number;
 }
 
 const Select = ({
 	options,
 	isExistAll,
-	onChange
+	onChange,
+	value
 }: SelectProps): JSX.Element => {
 	return (
 		<select
 			className='select w-full max-w-xs'
-			onChange={(e) => onChange(e.currentTarget.value)}>
+			onChange={(e) => onChange(e.currentTarget.value)}
+			defaultValue={0}
+			value={value}>
 			{/* <option disabled selected>
 				Pick your favorite Simpson
 			</option> */}
-			{isExistAll && <option selected value={0} label='전체' />}
+			{isExistAll && <option value={0} label='전체' />}
 			{options &&
 				options?.map((item: optionType) => (
 					<option key={item?.value} value={item?.value} label={item?.label} />

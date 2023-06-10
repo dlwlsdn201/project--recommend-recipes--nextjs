@@ -89,6 +89,7 @@ const MainComponent = () => {
 									<div className='label'>맵기 정도</div>
 									<div className='filter'>
 										<Select
+											value={spicyFilter}
 											options={spicyFilterItems}
 											isExistAll
 											onChange={(value) => {
@@ -101,6 +102,7 @@ const MainComponent = () => {
 									<div className='label'>종류</div>
 									<div className='filter'>
 										<Select
+											value={menuTypeFilter}
 											options={menuTypeFilterItems}
 											isExistAll
 											onChange={(value) => setMenuTypeFilter(Number(value))}
@@ -111,6 +113,7 @@ const MainComponent = () => {
 									<div className='label'>목적</div>
 									<div className='filter'>
 										<Select
+											value={conceptFilter}
 											options={conceptFilterItems}
 											isExistAll
 											onChange={(value) => setConceptFilter(Number(value))}
@@ -125,6 +128,7 @@ const MainComponent = () => {
 										<TextInput
 											placeholder='입력'
 											onChange={(value) => setMaterials('material1', value)}
+											value={material1}
 										/>
 									</div>
 								</div>
@@ -134,6 +138,7 @@ const MainComponent = () => {
 										<TextInput
 											placeholder='입력'
 											onChange={(value) => setMaterials('material2', value)}
+											value={material2}
 										/>
 									</div>
 								</div>
@@ -143,6 +148,7 @@ const MainComponent = () => {
 										<TextInput
 											placeholder='입력'
 											onChange={(value) => setMaterials('material3', value)}
+											value={material3}
 										/>
 									</div>
 								</div>
@@ -152,6 +158,7 @@ const MainComponent = () => {
 										<TextInput
 											placeholder='입력'
 											onChange={(value) => setMaterials('material4', value)}
+											value={material4}
 										/>
 									</div>
 								</div>
