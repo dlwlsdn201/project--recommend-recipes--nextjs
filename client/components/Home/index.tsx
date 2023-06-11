@@ -77,6 +77,10 @@ const MainComponent = () => {
 			console.error(error);
 		}
 	};
+
+	const isDisabled = Boolean(
+		!material1 && !material2 && !material3 && !material4
+	);
 	return (
 		<div className='root-container h-[100%] border-red-400 border-2 p-2'>
 			<div className='inner-container grid gap-6 tablet:grid-cols-5 grid-cols-1 grid-rows-1 border-blue-300 border-2'>
@@ -97,7 +101,7 @@ const MainComponent = () => {
 							<div>
 								<ul className='list-disc'>
 									<li>
-										원하는 결과를 얻기 위해 재료는 최소 2가지 이상 입력해주세요!
+										원하는 결과를 얻기 위해 재료는 최소 1가지 이상 입력해주세요!
 									</li>
 									<li>총 2~5개의 음식 레시피가 추천돼요!</li>
 									<li>
@@ -157,7 +161,7 @@ const MainComponent = () => {
 									<div className='filter'>
 										<TextInput
 											testId='homePage-input-material1'
-											placeholder='입력'
+											placeholder='입력 (필수)'
 											onChange={(value) => setMaterials('material1', value)}
 											value={material1}
 										/>
@@ -202,6 +206,7 @@ const MainComponent = () => {
 									<Primary
 										label='추천 받기'
 										onSubmit={onFinishForm}
+										disabled={isDisabled}
 										testId='homePage-submit-button'
 									/>
 								</div>
