@@ -89,8 +89,8 @@ export const formatResult = (
 				return;
 			} else {
 				// Append the recipe step to the current recipe
-
-				currentRecipe.push(<li>{item}</li>);
+				const validText = item.split('.')[1].length > 0;
+				if (validText) currentRecipe.push(<li>{item}</li>); // 빈 내용 레시피 line 이 아닐 경우에만 삽입
 				isChanged = false;
 				if (lines.length === index + 1) isChanged = true; // 마지막 item일 경우
 				if (isChanged) {

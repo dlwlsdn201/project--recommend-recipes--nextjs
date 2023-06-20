@@ -17,7 +17,7 @@ const HomePage = () => {
 	};
 
 	// === format ===
-	const formattedResult = useMemo(() => formatResult(MOCK_RESPONSE_DATA), []);
+	const formattedResult = useMemo(() => formatResult(apiData), []);
 
 	// JSX
 	const contents = useMemo(() => formattedResult, [isRequested]);

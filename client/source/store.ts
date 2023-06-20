@@ -30,7 +30,7 @@ export const mainStore = create<INTERFACE_mainStore>((set) => ({
 	setLoading: (value) => set(() => ({ loading: value })),
 	apiData: undefined,
 	setApiData: (value) => set(() => ({ apiData: value })),
-	modal: true,
+	modal: false,
 	setModal: (value) => set(() => ({ modal: value })),
 	isRequested: false,
 	setIsRequested: (value) => set(() => ({ isRequested: value }))
