@@ -1,6 +1,5 @@
 import { Fragment, useRef, useState } from 'react';
 import { Dialog, Transition } from '@headlessui/react';
-import { JsxElement } from 'typescript';
 
 interface IProps {
 	modal: boolean;
@@ -8,11 +7,11 @@ interface IProps {
 	setClose: Function;
 	customIcon: React.ReactElement;
 	content: React.ReactElement;
+	testId: string;
 }
 
 export default function CustomModal(props: IProps) {
-	const { modal, setOpen, setClose, customIcon, content } = props;
-	// const [open, setOpen] = useState(true);
+	const { modal, testId, setOpen, setClose, customIcon, content } = props;
 
 	const cancelButtonRef = useRef(null);
 
@@ -45,18 +44,23 @@ export default function CustomModal(props: IProps) {
 							leaveFrom='opacity-100 translate-y-0 sm:scale-100'
 							leaveTo='opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95'>
 							<Dialog.Panel className='relative transform overflow-hidden rounded-lg bg-black text-left shadow-xl transition-all sm:my-8 sm:w-full sm:max-w-lg'>
-								<div className='bg-black px-4 pb-4 pt-5 sm:p-6 sm:pb-4'>
+								<div
+									className='bg-black px-4 pb-4 pt-5 sm:p-6 sm:pb-4'
+									data-testid={testId}>
 									<div className='sm:flex sm:items-start'>
 										<div className='mx-auto flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-black sm:mx-0 sm:h-10 sm:w-10'>
 											{customIcon}
 										</div>
 										<div className='mt-3 text-center sm:ml-4 sm:mt-0 sm:text-left'>
 											<Dialog.Title
-												as='h3'
-												className='text-base font-semibold leading-6 text-gray-200'>
-												Deactivate account
+												as='h2'
+												className=' font-semibold leading-6 text-3xl text-gray-200'>
+												추천 결과
 											</Dialog.Title>
-											<div className='mt-2'>
+											<div className='border-gray-400 w-[90%] border-t-2 mx-[auto] mt-4 mb-8' />
+											<div
+												className='mt-2'
+												data-testid='homePage-result-modal-content'>
 												{content}
 												{/* <p className='text-sm text-gray-400'>
 													Are you sure you want to deactivate your account? All

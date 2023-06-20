@@ -1,5 +1,6 @@
 // === formatter ===
 
+import { ReactNode } from 'react';
 import {
 	conceptFilterItems,
 	menuTypeFilterItems,
@@ -41,18 +42,64 @@ export const formatInputDataToRequest = (inputValues: IinputValues) => {
 	return result;
 };
 
-export const formatResult = (rowData: string): JSX.Element => {
-	let result: JSX.Element[];
-	if (rowData) {
-		const lines: string[] = rowData.split('\n');
-		result = lines
-			.map((line: string): string => line.trim())
-			.filter((line: string): boolean => line !== '')
-			.map((line: string, index: number): JSX.Element => {
-				const recipeInfo: string = line.replace(/^\d+\.\s*/, '');
-				return <li key={index}>{recipeInfo}</li>;
-			});
-	}
+export const formatResult = (
+	rowData: string
+): Array<{ title: string; desc: ReactNode }> => {
+	const insertToResult = (
+		resultArray: any[],
+		title: string,
+		descriptions: React.ReactElement[]
+	) => {
+		const result = resultArray;
+		result.push({
+			title,
+			desc: <ul>{descriptions}</ul>
+		});
 
-	return <ul>{result}</ul>;
+		return result;
+	};
+
+	let result: Array<{ title: string; desc: string | React.ReactElement }> = [];
+	if (rowData) {
+		const lines: string[] = rowData
+			.split('\n')
+			.map((line: string): string => line.trim())
+			.filter((line: string): boolean => line !== '');
+
+		let currentCategory: string = '';
+		let currentRecipe: React.ReactElement[] = [];
+		let isChanged: boolean = false;
+		lines.forEach((item: string, index) => {
+			if (item.startsWith('음식 추천 메뉴')) {
+				// Title
+				// Extract the category title
+				const categoryTitle = item.split(':')[1].trim();
+				if (currentCategory.length > 0 && currentRecipe.length > 0) {
+					isChanged = true;
+					if (isChanged) {
+						// 제목, 설명이 이미 존재할 경우
+						result = insertToResult(result, currentCategory, currentRecipe);
+						currentCategory = '';
+						currentRecipe = [];
+					}
+				}
+				currentCategory = categoryTitle;
+			} else if (item.startsWith('조리 레시피:')) {
+				// Ignore the recipe description
+				return;
+			} else {
+				// Append the recipe step to the current recipe
+
+				currentRecipe.push(<li>{item}</li>);
+				isChanged = false;
+				if (lines.length === index + 1) isChanged = true; // 마지막 item일 경우
+				if (isChanged) {
+					result = insertToResult(result, currentCategory, currentRecipe);
+					currentCategory = '';
+					currentRecipe = [];
+				}
+			}
+		});
+	}
+	return result;
 };

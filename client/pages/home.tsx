@@ -1,6 +1,8 @@
 import MainComponent from '@/components/Home';
 import { formatResult } from '@/components/Home/Handlers';
+import WithIndicatorBtn from '@/components/Modules/Carousel/WithIndicatorBtn';
 import CustomModal from '@/components/Modules/Modal';
+import { MOCK_RESPONSE_DATA } from '@/mocks/data/home';
 import { mainStore } from '@/source/store';
 import { CubeIcon } from '@heroicons/react/24/outline';
 import React, { useMemo } from 'react';
@@ -15,10 +17,11 @@ const HomePage = () => {
 	};
 
 	// === format ===
-	const formattedResult = useMemo(() => formatResult(apiData), [isRequested]);
+	const formattedResult = useMemo(() => formatResult(MOCK_RESPONSE_DATA), []);
 
 	// JSX
-	const resultContent = useMemo(() => formattedResult, [isRequested]);
+	const contents = useMemo(() => formattedResult, [isRequested]);
+	const formattedCarousel = WithIndicatorBtn({ contents });
 
 	return (
 		<>
@@ -30,7 +33,8 @@ const HomePage = () => {
 				customIcon={
 					<CubeIcon className='h-6 w-6 text-purple-400' aria-hidden='true' />
 				}
-				content={resultContent}
+				content={formattedCarousel}
+				testId='homePage-result-modal'
 			/>
 		</>
 	);
