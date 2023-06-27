@@ -82,10 +82,10 @@ const MainComponent = () => {
 		!material1 && !material2 && !material3 && !material4
 	);
 	return (
-		<div className='root-container h-[100%] border-red-400 border-2 p-2'>
-			<div className='inner-container grid gap-6 tablet:grid-cols-5 grid-cols-1 grid-rows-1 border-blue-300 border-2'>
+		<div className='root-container h-[100%] p-2'>
+			<div className='inner-container grid gap-6 tablet:grid-cols-5 grid-cols-1 grid-rows-1 '>
 				<div
-					className='area--left border-green-400 border-2 col-span-2 p-8 flex items-start'
+					className='area--left col-span-2 p-8 flex items-start border-r border-gray-300'
 					data-testid='homePage-description'>
 					<div className='inner-wrapper h-fit'>
 						<div className='title mobile:text-lg laptop:text-3xl'>
@@ -112,7 +112,7 @@ const MainComponent = () => {
 						</div>
 					</div>
 				</div>
-				<div className='area--right border-yellow-400 border-2 col-span-3'>
+				<div className='area--right col-span-3'>
 					<Loading spinning={loading}>
 						<div className='inner-wrapper grid grid-rows-12 grid-cols-1 gap-8 p-8'>
 							<div className='filters--wrapper grid row-start-1 tablet:grid-cols-3 mobile:grid-cols-1 gap-5'>

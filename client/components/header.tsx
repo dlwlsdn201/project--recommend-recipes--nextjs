@@ -8,7 +8,7 @@ export default function Example() {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
 	return (
-		<header className='sticky left-0 top-0 h-24 bg-dark border-4 border-red-500'>
+		<header className='sticky left-0 top-0 h-24 bg-dark '>
 			<nav
 				className=' flex max-w-[100%] mx-[1%] items-center justify-between p-6 laptop:px-8'
 				aria-label='Global'>
