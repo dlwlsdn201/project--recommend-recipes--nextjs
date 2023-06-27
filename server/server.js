@@ -1,12 +1,15 @@
 const express = require('express');
 const cors = require('cors');
+const dotenv = require('dotenv');
+dotenv.config();
 const bodyParser = require('body-parser');
 
 const { Configuration, OpenAIApi } = require('openai');
 
+const apiKey = process.env.OPENAI_API_KEY;
 const configuration = new Configuration({
 	organization: 'org-UTqoP6O0CK7qqnFxn9CNHmhi',
-	apiKey: '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'
+	apiKey
 });
 const openai = new OpenAIApi(configuration);
 
@@ -24,7 +27,7 @@ app.post('/chat', async (req, res) => {
 	const completion = await openai.createCompletion({
 		model: 'text-davinci-003',
 		prompt: userInput,
-		max_tokens: 600,
+		max_tokens: 700,
 		temperature: 0.2
 	});
 	// console.log(completion.data.choices[0].text);
