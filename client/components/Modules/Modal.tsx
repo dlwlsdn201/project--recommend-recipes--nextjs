@@ -11,8 +11,7 @@ interface IProps {
 }
 
 export default function CustomModal(props: IProps) {
-	const { modal, testId, setOpen, setClose, customIcon, content } = props;
-
+	const { modal, testId, setClose, customIcon, content } = props;
 	const cancelButtonRef = useRef(null);
 
 	return (
