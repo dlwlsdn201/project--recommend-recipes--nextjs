@@ -24,7 +24,7 @@ export const mainStore = create<INTERFACE_mainStore>((set) => ({
 	material1: undefined,
 	material2: undefined,
 	material3: undefined,
-	material4: undefined,
+	// material4: undefined,
 	setMaterials: (key: string, value: string) => set(() => ({ [key]: value })),
 	loading: false,
 	setLoading: (value) => set(() => ({ loading: value })),
