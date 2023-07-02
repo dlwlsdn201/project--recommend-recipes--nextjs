@@ -8,12 +8,16 @@ const Navbar = () => {
 			<Link href='/home' className='text-sm font-semibold leading-6 text-white'>
 				Home
 			</Link>
-			<a href='#' className='text-sm font-semibold leading-6 text-white'>
+			<Link
+				href='/about'
+				className='text-sm font-semibold leading-6 text-white'>
 				About
-			</a>
-			<a href='#' className='text-sm font-semibold leading-6 text-white'>
+			</Link>
+			<Link
+				href='/contact'
+				className='text-sm font-semibold leading-6 text-white'>
 				Contact
-			</a>
+			</Link>
 		</Popover.Group>
 	);
 };

@@ -3,6 +3,7 @@ import { Dialog, Disclosure, Popover, Transition } from '@headlessui/react';
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Navbar from './Modules/Navbar';
+import Link from 'next/link';
 
 export default function Example() {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -46,9 +47,9 @@ export default function Example() {
 					</a>
 				</Popover.Group> */}
 				<div className='hidden laptop:flex laptop:flex-1 laptop:justify-end'>
-					<a href='#' className='text-sm font-semibold leading-6 text-white'>
+					<Link href='/' className='text-sm font-semibold leading-6 text-white'>
 						Log in <span aria-hidden='true'>&rarr;</span>
-					</a>
+					</Link>
 				</div>
 			</nav>
 			<Dialog
@@ -98,7 +99,7 @@ export default function Example() {
 							</div>
 							<div className='py-6'>
 								<a
-									href='#'
+									href='/'
 									className='-mx-3 block rounded-laptop px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'>
 									Log in
 								</a>
