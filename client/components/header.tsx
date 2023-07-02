@@ -4,9 +4,27 @@ import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline';
 import Image from 'next/image';
 import Navbar from './Modules/Navbar';
 import Link from 'next/link';
+import { commonStore } from '@/source/store';
+import { READ_LOGOUT } from '@/api';
+import { useRouter } from 'next/router';
 
-export default function Example() {
+export default function Header() {
 	const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+	const { isLogin, setIsLogin } = commonStore();
+	const router = useRouter();
+
+	const handleLogout = async () => {
+		try {
+			const response = await READ_LOGOUT();
+			console.log({ response });
+			if (response.status === 200) {
+				setIsLogin(false);
+				router.push('/');
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	};
 
 	return (
 		<header className='sticky left-0 top-0 h-24 bg-dark '>
@@ -14,7 +32,7 @@ export default function Example() {
 				className=' flex max-w-[100%] mx-[1%] items-center justify-between p-6 laptop:px-8'
 				aria-label='Global'>
 				<div className='flex laptop:flex-1 items-center'>
-					<a href='#' className='-m-1.5 p-1.5'>
+					<Link href='/home' className='-m-1.5 p-1.5'>
 						<Image
 							// className='h-8 w-auto'
 							src={require('../public/images/logo.png').default}
@@ -22,7 +40,7 @@ export default function Example() {
 							width={72}
 							height={64}
 						/>
-					</a>
+					</Link>
 					{/* <h3 className='text-white text-xl ml-2'>냉장고를 부탁해</h3> */}
 				</div>
 				<div className='flex tablet:hidden'>
@@ -47,9 +65,17 @@ export default function Example() {
 					</a>
 				</Popover.Group> */}
 				<div className='hidden laptop:flex laptop:flex-1 laptop:justify-end'>
-					<Link href='/' className='text-sm font-semibold leading-6 text-white'>
-						Log in <span aria-hidden='true'>&rarr;</span>
-					</Link>
+					{isLogin ? (
+						<button type='button' onClick={handleLogout}>
+							Logout <span aria-hidden='true'>&rarr;</span>
+						</button>
+					) : (
+						<Link
+							href='/'
+							className='text-sm font-semibold leading-6 text-white'>
+							Log in <span aria-hidden='true'>&rarr;</span>
+						</Link>
+					)}
 				</div>
 			</nav>
 			<Dialog
@@ -60,16 +86,16 @@ export default function Example() {
 				<div className='fixed inset-0 z-10' />
 				<Dialog.Panel className='fixed inset-y-0 right-0 z-10 w-[30%] overflow-y-auto bg-white px-6 py-6 mobile:max-w-sm mobile:ring-1 mobile:ring-gray-900/10'>
 					<div className='flex items-center justify-between'>
-						<a href='#' className='-m-1.5 p-1.5'>
+						<Link href='/home' className='-m-1.5 p-1.5'>
 							<span className='sr-only'>Your Company</span>
 							<Image
 								// className='h-8 w-auto'
 								src={require('../public/images/logo.png').default}
 								alt='Logo'
-								width={64}
+								width={72}
 								height={64}
 							/>
-						</a>
+						</Link>
 						<button
 							type='button'
 							className='-m-2.5 rounded-md p-2.5 text-gray-700'
@@ -81,28 +107,34 @@ export default function Example() {
 					<div className='mt-6 flow-root'>
 						<div className='-my-6 divide-y divide-gray-500/10'>
 							<div className='space-y-2 py-6'>
-								<a
+								<Link
 									href='#'
 									className='-mx-3 block rounded-laptop px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'>
 									Features
-								</a>
-								<a
+								</Link>
+								<Link
 									href='#'
 									className='-mx-3 block rounded-laptop px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'>
 									Marketplace
-								</a>
-								<a
+								</Link>
+								<Link
 									href='#'
 									className='-mx-3 block rounded-laptop px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'>
 									Company
-								</a>
+								</Link>
 							</div>
 							<div className='py-6'>
-								<a
-									href='/'
-									className='-mx-3 block rounded-laptop px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'>
-									Log in
-								</a>
+								{isLogin ? (
+									<button type='button' onClick={handleLogout}>
+										Logout
+									</button>
+								) : (
+									<Link
+										href='/'
+										className='-mx-3 block rounded-laptop px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50'>
+										Log in
+									</Link>
+								)}
 							</div>
 						</div>
 					</div>
