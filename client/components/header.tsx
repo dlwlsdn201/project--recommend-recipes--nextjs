@@ -19,11 +19,11 @@ export default function Example() {
 							// className='h-8 w-auto'
 							src={require('../public/images/logo.png').default}
 							alt='Logo'
-							width={64}
+							width={72}
 							height={64}
 						/>
 					</a>
-					<h3 className='text-white text-xl ml-2'>냉장고를 부탁해</h3>
+					{/* <h3 className='text-white text-xl ml-2'>냉장고를 부탁해</h3> */}
 				</div>
 				<div className='flex tablet:hidden'>
 					<button
