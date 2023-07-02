@@ -30,7 +30,6 @@ app.post('/chat', async (req, res) => {
 		max_tokens: 700,
 		temperature: 0.2
 	});
-	// console.log(completion.data.choices[0].text);
 	res.send(completion.data);
 });
 
