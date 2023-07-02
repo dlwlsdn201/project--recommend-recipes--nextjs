@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 interface TextInputProps {
 	placeholder: string;
@@ -13,14 +13,18 @@ const TextInput = ({
 	onChange,
 	testId
 }: TextInputProps): JSX.Element => {
+	const [currentValue, setCurrentValue] = useState(value);
 	return (
 		<input
 			data-testid={testId}
 			type='text'
 			placeholder={placeholder}
-			onChange={(e) => onChange(e.target.value)}
+			onChange={(e) => {
+				onChange(e.target.value);
+				setCurrentValue(e.target.value);
+			}}
 			className='input input-bordered input-primary w-full text-white'
-			value={value}
+			defaultValue={currentValue}
 		/>
 	);
 };
