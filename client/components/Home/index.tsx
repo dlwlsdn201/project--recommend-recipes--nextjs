@@ -8,12 +8,9 @@ import {
 import TextInput from '../Modules/TextInput';
 import { mainStore } from '@/source/store';
 import Primary from '../Modules/Buttons/Primary';
-import * as dotenv from 'dotenv';
 import { CREATE_RECOMMEND_RECIPES } from '../../api';
 import { formatInputDataToRequest } from './Handlers';
 import Loading from '../Modules/Loading';
-
-dotenv.config({ path: __dirname + '/client/.env' });
 
 const MainComponent = () => {
 	const {
