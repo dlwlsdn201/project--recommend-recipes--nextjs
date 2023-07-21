@@ -36,7 +36,7 @@ export const formatInputDataToRequest = (inputValues: IinputValues) => {
     3. 맵기 정도:${formattedValues?.menuTypeFilter}, 
     4. 분위기: ${formattedValues?.conceptFilter}, 
 
-    위의 조건에 적절한 음식 추천 메뉴 2가지와 각각의 조리 레시피를 알려줘
+    위의 조건에 적절한 음식 추천 메뉴 2개의 이름과 조리 레시피를 각각 따로 알려줘
   `;
 
 	return result;
