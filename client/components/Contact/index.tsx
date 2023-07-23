@@ -1,10 +1,13 @@
-import React, { ReactNode } from 'react';
+import React, { ReactNode, useState } from 'react';
 import Name from './Inputs/Name';
 import Email from './Inputs/Email';
 import PhoneNumber from './Inputs/PhoneNumber';
 import Primary from '../Modules/Buttons/Primary';
 
-const Contact = (): React.ReactElement => {
+const Contact = ():ReactNode => {
+  const [name,setName] = useState(null);
+  const [email,setEmail] = useState(null);
+  const [phoneNumber,setPhoneNumber] = useState(null);
 	return (
 		<div
 			id='inner-container'
@@ -14,9 +17,9 @@ const Contact = (): React.ReactElement => {
 			</div>
 			<form onSubmit={() => console.log('form 완성')}>
 				<div id='form-wrapper' className='grid grid-cols-1 gap-8'>
-					<Name />
-					<Email />
-					<PhoneNumber />
+          <Name value={name} setName={setName} />
+          <Email value={email} setEmail={setEmail} />
+          <PhoneNumber value={phoneNumber} setPhoneNumber={setPhoneNumber} />
 					<div id='grid-row' className='w-[37%]'>
 						<Primary
 							label='Send'
