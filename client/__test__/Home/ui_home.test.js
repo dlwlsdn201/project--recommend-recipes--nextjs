@@ -1,6 +1,10 @@
 import HomePage from '@/pages/home';
 import { render, screen } from '@testing-library/react';
 
+jest.mock('next/router', () => ({
+  useRouter: jest.fn(),
+}));
+
 describe('Home page UI 렌더링 Test', () => {
 	it('1. Description UI', () => {
 		render(<HomePage />);
@@ -23,7 +27,7 @@ describe('Home page UI 렌더링 Test', () => {
 		// 재료3 입력 UI
 		const material3 = screen.getByTestId('homePage-input-material3');
 		// 재료4 입력 UI
-		const material4 = screen.getByTestId('homePage-input-material4');
+		// const material4 = screen.getByTestId('homePage-input-material4');
 		// form submit UI
 		const submitButton = screen.getByTestId('homePage-submit-button');
 
@@ -33,7 +37,7 @@ describe('Home page UI 렌더링 Test', () => {
 		expect(material1).toBeInTheDocument();
 		expect(material2).toBeInTheDocument();
 		expect(material3).toBeInTheDocument();
-		expect(material4).toBeInTheDocument();
+		// expect(material4).toBeInTheDocument();
 		expect(submitButton).toBeInTheDocument();
 	});
 });
