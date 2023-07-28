@@ -16,7 +16,6 @@ export default function Header() {
   const handleLogout = async () => {
     try {
       const response = await READ_LOGOUT();
-      console.log({ response });
       if (response.status === 200) {
         setIsLogin(false);
         router.push('/');
@@ -51,7 +50,7 @@ export default function Header() {
             <Bars3Icon className="h-6 w-6" aria-hidden="true" />
           </button>
         </div>
-        <Navbar />
+        {isLogin && <Navbar />}
         {/* <Popover.Group className='hidden laptop:flex laptop:gap-x-12'>
 					<a href='#' className='text-sm font-semibold leading-6 text-white'>
 						Home
