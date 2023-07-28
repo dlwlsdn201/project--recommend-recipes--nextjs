@@ -36,7 +36,7 @@ export const formatInputDataToRequest = (inputValues: IinputValues) => {
     3. 맵기 정도:${formattedValues?.menuTypeFilter}, 
     4. 분위기: ${formattedValues?.conceptFilter}, 
 
-    위의 조건에 적절한 음식 추천 메뉴 2가지와 각각의 조리 레시피를 알려줘
+    위의 조건에 적절한 음식 추천 메뉴 2개의 이름과 조리 레시피를 각각 따로 알려줘
   `;
 
 	return result;
@@ -70,7 +70,7 @@ export const formatResult = (
 		let currentRecipe: React.ReactElement[] = [];
 		let isChanged: boolean = false;
 		lines.forEach((item: string, index) => {
-			if (item.startsWith('음식 추천 메뉴')) {
+			if (item.startsWith('음식 추천 메뉴') || item.startsWith('추천 메뉴')) {
 				// Title
 				// Extract the category title
 				const categoryTitle = item.split(':')[1].trim();
@@ -89,7 +89,8 @@ export const formatResult = (
 				return;
 			} else {
 				// Append the recipe step to the current recipe
-				const validText = item.split('.')[1].length > 0;
+				// console.log({ item });
+				const validText = item.split('.')[1] && item.split('.')[1].length > 0;
 				if (validText) currentRecipe.push(<li>{item}</li>); // 빈 내용 레시피 line 이 아닐 경우에만 삽입
 				isChanged = false;
 				if (lines.length === index + 1) isChanged = true; // 마지막 item일 경우

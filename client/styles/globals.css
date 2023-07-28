@@ -30,3 +30,18 @@ main {
 #__next {
   height: 100%;
 }
+
+#grid-row {
+  margin: 0 auto;
+}
+
+#grid-row label {
+  display: inline-block;
+  width: 5rem;
+}
+
+#grid-row input {
+  display: inline-block;
+  width: 20rem;
+  padding: 0.25rem .625rem;
+}

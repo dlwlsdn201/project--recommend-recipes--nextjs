@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 
 const { Configuration, OpenAIApi } = require('openai');
 
-const apiKey = process.env.OPENAI_API_KEY;
+const apiKey = process.env.OPENAPI_API_KEY;
 const configuration = new Configuration({
 	organization: 'org-UTqoP6O0CK7qqnFxn9CNHmhi',
 	apiKey
@@ -30,7 +30,6 @@ app.post('/chat', async (req, res) => {
 		max_tokens: 700,
 		temperature: 0.2
 	});
-	// console.log(completion.data.choices[0].text);
 	res.send(completion.data);
 });
 

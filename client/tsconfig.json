@@ -23,7 +23,7 @@
 			"@/components": ["./components/*"],
 			"@/pages": ["./pages/*"],
 			"@/images": ["./public/images/*"],
-			"@/api": ["./api/*"]
+			"@@/api": ["./api/*"]
 		}
 	},
 	"include": [

@@ -1,7 +1,9 @@
 import { loginStore } from '@/source/store';
 import SnsLogin from './Sns';
+import { CREATE_LOGIN } from '@/api';
+import { useRouter } from 'next/router';
 
-const Login = () => {
+const Login = ({ handleLogin }) => {
 	const { userId, setUserId } = loginStore();
 
 	return (
@@ -20,7 +22,7 @@ const Login = () => {
 			</div>
 
 			<div className='mt-10 mobile:mx-auto mobile:w-full mobile:max-w-sm'>
-				<form className='space-y-6' action='#' method='POST'>
+				<form className='space-y-6'>
 					<div>
 						<label
 							htmlFor='email'
@@ -38,7 +40,7 @@ const Login = () => {
 								}}
 								// onChange={(e) => onChange(e.target.value)}
 								required
-								className='block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 mobile:text-sm mobile:leading-6'
+								className='block w-full rounded-md border-0 py-1.5 px-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 mobile:text-sm mobile:leading-6'
 							/>
 						</div>
 					</div>
@@ -65,14 +67,15 @@ const Login = () => {
 								type='password'
 								autoComplete='current-password'
 								required
-								className='block w-full rounded-md border-0 py-1.5 px-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 mobile:text-sm mobile:leading-6'
+								className='block w-full rounded-md border-0 py-1.5 px-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 mobile:text-sm mobile:leading-6'
 							/>
 						</div>
 					</div>
 
 					<div className='!mt-10'>
 						<button
-							type='submit'
+							type='button'
+							onClick={handleLogin}
 							className='flex transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-indigo-600 duration-500 w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>
 							Sign in
 						</button>

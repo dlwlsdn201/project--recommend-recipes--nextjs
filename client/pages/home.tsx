@@ -2,13 +2,28 @@ import MainComponent from '@/components/Home';
 import { formatResult } from '@/components/Home/Handlers';
 import WithIndicatorBtn from '@/components/Modules/Carousel/WithIndicatorBtn';
 import CustomModal from '@/components/Modules/Modal';
-import { MOCK_RESPONSE_DATA } from '@/mocks/data/home';
 import { mainStore } from '@/source/store';
 import { CubeIcon } from '@heroicons/react/24/outline';
-import React, { useMemo } from 'react';
+import axios from 'axios';
+import { useRouter } from 'next/router';
+import React, { useEffect, useMemo } from 'react';
 
 const HomePage = () => {
-	const { apiData, modal, setModal, isRequested, setIsRequested } = mainStore();
+	const { apiData, modal, setModal, setIsRequested } = mainStore();
+	const router = useRouter();
+	const checkIsLogin = () => {
+		axios.get('api/isLogin').then((res) => {
+			if (res.status === 200 && res.data.name) {
+				// 로그인 성공
+			} else {
+				router.push('/');
+				// 로그인 안됨
+			}
+		});
+	};
+	useEffect(() => {
+		checkIsLogin();
+	}, []);
 
 	// === update state ===
 	const updateClosed = () => {
@@ -17,10 +32,10 @@ const HomePage = () => {
 	};
 
 	// === format ===
-	const formattedResult = useMemo(() => formatResult(apiData), []);
+	const formattedResult = useMemo(() => formatResult(apiData), [apiData]);
 
 	// JSX
-	const contents = useMemo(() => formattedResult, [isRequested]);
+	const contents = useMemo(() => formattedResult, [formattedResult]);
 	const formattedCarousel = WithIndicatorBtn({ contents });
 
 	return (

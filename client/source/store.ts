@@ -1,8 +1,17 @@
 import { create } from 'zustand';
-import { INTERFACE_loginStore, INTERFACE_mainStore } from './types';
+import {
+	INTERFACE_commonStore,
+	INTERFACE_loginStore,
+	INTERFACE_mainStore
+} from './types';
 
 // [store] 전역 데이터
 export const rootStore = (set) => ({});
+
+export const commonStore = create<INTERFACE_commonStore>((set) => ({
+	isLogin: false,
+	setIsLogin: (value: boolean) => set(() => ({ isLogin: value }))
+}));
 
 // [store] Login 페이지 데이터
 export const loginStore = create<INTERFACE_loginStore>((set) => ({

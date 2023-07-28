@@ -4,18 +4,21 @@ interface TextInputProps {
 	placeholder: string;
 	value: string;
 	onChange: Function;
-	testId: string;
+  testId?: string;
+  id?: string;
 }
 
 const TextInput = ({
 	placeholder,
 	value,
 	onChange,
-	testId
+  testId,
+  id,
 }: TextInputProps): JSX.Element => {
 	const [currentValue, setCurrentValue] = useState(value);
 	return (
-		<input
+    <input
+      id={id}
 			data-testid={testId}
 			type='text'
 			placeholder={placeholder}

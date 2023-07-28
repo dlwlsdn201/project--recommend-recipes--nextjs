@@ -1,3 +1,8 @@
+export interface INTERFACE_commonStore {
+	isLogin: boolean;
+	setIsLogin: Function;
+}
+
 export interface INTERFACE_loginStore {
 	userId: string;
 	setUserId: Function;
@@ -15,7 +20,7 @@ export interface INTERFACE_mainStore {
 	material1: string;
 	material2: string;
 	material3: string;
-	material4: string;
+	// material4: string;
 	setMaterials: Function;
 	loading: boolean;
 	setLoading: Function;
