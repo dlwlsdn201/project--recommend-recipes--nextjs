@@ -40,14 +40,13 @@ export default async function handler(req, res) {
         html: `${body.content}<br/><br/><br/><i><strong>${body.name}</strong> 님이 보냄</i><br/>${body.phoneNumber}}`,
       };
 
-      console.log('TEST:', body);
-
       try {
         const response = await transporter?.sendMail(mailOptions);
       } catch (error) {
         throw Error();
       }
     };
+
     try {
       await sendMail();
       res.status(200).json({ message: 'Success' });
