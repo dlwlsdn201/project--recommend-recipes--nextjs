@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-interface TextInputProps {
+interface TextAreaProps {
   placeholder: string;
   value: string;
   onChange: Function;
@@ -8,12 +8,11 @@ interface TextInputProps {
   id?: string;
 }
 
-const TextInput = ({ placeholder, value, onChange, testId, id }: TextInputProps): JSX.Element => {
+const TextArea = ({ placeholder, value, onChange, testId, id }: TextAreaProps): JSX.Element => {
   return (
-    <input
+    <textarea
       id={id}
       data-testid={testId}
-      type="text"
       placeholder={placeholder}
       onChange={(e) => {
         onChange(e.target.value);
@@ -24,4 +23,4 @@ const TextInput = ({ placeholder, value, onChange, testId, id }: TextInputProps)
   );
 };
 
-export default TextInput;
+export default TextArea;
