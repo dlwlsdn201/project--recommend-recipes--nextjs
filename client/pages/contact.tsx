@@ -1,12 +1,12 @@
 import Contact from '@/components/Contact';
-import React from 'react';
+import React, { ReactNode } from 'react';
 
-const ContactPage = (): React.ReactElement => {
-	return (
-		<div id='root-container' className='mx-64 '>
-			<Contact />
-		</div>
-	);
+const ContactPage = (): ReactNode => {
+  return (
+    <div id="root-container" className="mx-64 ">
+      <Contact />
+    </div>
+  );
 };
 
 export default ContactPage;
