@@ -70,7 +70,10 @@ const Contact = (): React.ReactElement => {
 
   return (
     <Loading spinning={loading}>
-      <div id="inner-container" className="border-2 border-yellow-300 grid gap-y-8 py-6 px-32">
+      <div
+        id="inner-container"
+        className="border-2 border-gray-800 grid gap-y-8 py-6 laptop:px-32 mobile:px-4 tablet:px-8"
+      >
         <div id="title-wrapper" className="w-[100%] grid-cols-1">
           <h1 className="col-span-1 text-center text-2xl">Contact Me</h1>
         </div>
