@@ -59,6 +59,20 @@ main {
   min-height: 12rem;
 }
 
+.filter--block .label {
+  padding: 0;
+  margin-bottom: 1rem;
+}
+
+.filter--block input {
+  height: 4rem;
+  font-size: 1.2rem;
+}
+.filter--block select {
+  height: 4rem;
+  font-size: 1.2rem;
+}
+
 /* ====== animate css ======= */
 .alert {
   animation-duration: .5s !important;

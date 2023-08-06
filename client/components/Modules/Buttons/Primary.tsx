@@ -1,15 +1,17 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 
 interface Props {
   label?: string;
   onSubmit?: Function;
   testId: string;
   disabled: boolean;
+  style?: CSSProperties;
 }
 
-const Primary = ({ label, onSubmit, testId, disabled }: Props): JSX.Element => {
+const Primary = ({ label, onSubmit, testId, disabled, style }: Props): JSX.Element => {
   return (
     <button
+      style={{ ...style }}
       data-testid={testId}
       onClick={() => onSubmit()}
       disabled={disabled}

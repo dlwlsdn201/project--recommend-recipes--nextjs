@@ -22,8 +22,6 @@ export default function LoginPage() {
     }
   };
 
-  console.log({ isLogin });
-
   if (isLogin) router.push('/home');
 
   return <Login handleLogin={handleLogin} />;

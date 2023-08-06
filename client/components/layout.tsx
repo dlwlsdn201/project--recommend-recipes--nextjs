@@ -38,7 +38,7 @@ const Layout = ({ children }: IProps) => {
         {isFetched && renderAlert(isError)}
       </div>
       <Header />
-      <TransitionGroup style={{ position: 'relative' }}>
+      <TransitionGroup style={{ position: 'relative', height: 'calc(100% - 6rem)' }}>
         <Transition
           key={router.pathname}
           timeout={{
@@ -50,6 +50,7 @@ const Layout = ({ children }: IProps) => {
             <div
               style={{
                 ...getTransitionStyles[status],
+                height: '100%',
               }}
             >
               <main>
