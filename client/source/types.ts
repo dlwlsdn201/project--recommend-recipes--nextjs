@@ -28,12 +28,12 @@ export interface INTERFACE_mainStore {
   material3: string;
   // material4: string;
   setMaterials: Function;
-  loading: boolean;
-  setLoading: Function;
+  // loading: boolean;
+  // setLoading: Function;
   apiData: string;
   setApiData: Function;
   modal: boolean;
   setModal: Function;
-  isRequested: boolean;
-  setIsRequested: Function;
+  // isRequested: boolean;
+  // setIsRequested: Function;
 }

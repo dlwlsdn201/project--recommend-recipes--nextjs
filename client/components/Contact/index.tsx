@@ -6,6 +6,7 @@ import Primary from '../Modules/Buttons/Primary';
 import Comment from './Inputs/Comment';
 import { commonStore } from '@/source/store';
 import { handleApiFailed, handleApiSucceed, postApiData } from './Modules/FetchHandler';
+import Loading from '../Modules/Loading';
 
 interface IMailInfo {
   service: 'gmail' | 'Naver' | 'Daum';
@@ -22,7 +23,7 @@ const Contact = (): React.ReactElement => {
   const [email, setEmail] = useState(initialState);
   const [phoneNumber, setPhoneNumber] = useState(initialState);
   const [comment, setComment] = useState(initialState);
-  const { setLoading, setIsFetched, setIsError } = commonStore();
+  const { setLoading, setIsFetched, setIsError, loading } = commonStore();
 
   // input 초기화
   const resetInputs = () => {
@@ -52,6 +53,8 @@ const Contact = (): React.ReactElement => {
       email: props?.email,
       content: props?.content,
     };
+
+    setLoading(true);
     const response = await postApiData({ endPoint: 'mail', bodyData });
 
     if (response.isError) updateFailed();
@@ -66,22 +69,24 @@ const Contact = (): React.ReactElement => {
   const disabled: boolean = !name.length || !email.length || !phoneNumber.length || !comment.length;
 
   return (
-    <div id="inner-container" className="border-2 border-yellow-300 grid gap-y-8 py-6 px-32">
-      <div id="title-wrapper" className="w-[100%] grid-cols-1">
-        <h1 className="col-span-1 text-center text-2xl">Contact Me</h1>
-      </div>
-      <form>
-        <div id="form-wrapper" className="grid grid-cols-1 gap-8">
-          <Name value={name} setName={setName} />
-          <Email value={email} setEmail={setEmail} />
-          <PhoneNumber value={phoneNumber} setPhoneNumber={setPhoneNumber} />
-          <Comment value={comment} setComment={setComment} />
-          <div id="grid-row" className="w-[50%]">
-            <Primary label="Send" disabled={disabled} onSubmit={() => onSubmit()} testId="submit-button" />
-          </div>
+    <Loading spinning={loading}>
+      <div id="inner-container" className="border-2 border-yellow-300 grid gap-y-8 py-6 px-32">
+        <div id="title-wrapper" className="w-[100%] grid-cols-1">
+          <h1 className="col-span-1 text-center text-2xl">Contact Me</h1>
         </div>
-      </form>
-    </div>
+        <form>
+          <div id="form-wrapper" className="grid grid-cols-1 gap-8">
+            <Name value={name} setName={setName} />
+            <Email value={email} setEmail={setEmail} />
+            <PhoneNumber value={phoneNumber} setPhoneNumber={setPhoneNumber} />
+            <Comment value={comment} setComment={setComment} />
+            <div id="grid-row" className="w-[50%]">
+              <Primary label="Send" disabled={disabled} onSubmit={() => onSubmit()} testId="submit-button" />
+            </div>
+          </div>
+        </form>
+      </div>
+    </Loading>
   );
 };
 

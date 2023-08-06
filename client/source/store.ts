@@ -10,9 +10,9 @@ export const commonStore = create<INTERFACE_commonStore>((set) => ({
   loading: false,
   setLoading: (value: boolean) => set(() => ({ loading: value })),
   isError: false,
-  setIsError: (value: boolean) => set(() => ({ loading: value })),
+  setIsError: (value: boolean) => set(() => ({ isError: value })),
   isFetched: false,
-  setIsFetched: (value: boolean) => set(() => ({ loading: value })),
+  setIsFetched: (value: boolean) => set(() => ({ isFetched: value })),
 }));
 
 // [store] Login 페이지 데이터
@@ -35,14 +35,14 @@ export const mainStore = create<INTERFACE_mainStore>((set) => ({
   material3: undefined,
   // material4: undefined,
   setMaterials: (key: string, value: string) => set(() => ({ [key]: value })),
-  loading: false,
-  setLoading: (value) => set(() => ({ loading: value })),
+  // loading: false,
+  // setLoading: (value) => set(() => ({ loading: value })),
   apiData: undefined,
   setApiData: (value) => set(() => ({ apiData: value })),
   modal: false,
   setModal: (value) => set(() => ({ modal: value })),
-  isRequested: false,
-  setIsRequested: (value) => set(() => ({ isRequested: value })),
+  // isRequested: false,
+  // setIsRequested: (value) => set(() => ({ isRequested: value })),
 }));
 
 // const hookDevtools = (store) => create(devtools(store));
