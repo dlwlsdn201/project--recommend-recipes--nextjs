@@ -46,14 +46,14 @@ main {
 
 #grid-row input {
   display: inline-block;
-  min-width: 20rem;
+  min-width: 12rem;
   width: 85%;
   padding: 0.25rem .625rem;
 }
 
 #grid-row textarea {
   display: inline-block;
-  min-width: 20rem;
+  min-width: 12rem;
   width: 85%;
   padding: 0.25rem .625rem;
   min-height: 12rem;
