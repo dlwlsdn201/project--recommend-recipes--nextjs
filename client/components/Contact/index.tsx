@@ -4,7 +4,16 @@ import Email from './Inputs/Email';
 import PhoneNumber from './Inputs/PhoneNumber';
 import Primary from '../Modules/Buttons/Primary';
 import Comment from './Inputs/Comment';
-import sendMail from './Modules/Mail';
+import { commonStore } from '@/source/store';
+import { handleApiFailed, handleApiSucceed, postApiData } from './Modules/FetchHandler';
+
+interface IMailInfo {
+  service: 'gmail' | 'Naver' | 'Daum';
+  name: string;
+  email: string;
+  content: string;
+  phoneNumber: string;
+}
 
 const initialState = '';
 
@@ -13,6 +22,7 @@ const Contact = (): React.ReactElement => {
   const [email, setEmail] = useState(initialState);
   const [phoneNumber, setPhoneNumber] = useState(initialState);
   const [comment, setComment] = useState(initialState);
+  const { setLoading, setIsFetched, setIsError } = commonStore();
 
   // input 초기화
   const resetInputs = () => {
@@ -20,6 +30,37 @@ const Contact = (): React.ReactElement => {
     setEmail(initialState);
     setPhoneNumber(initialState);
     setComment(initialState);
+  };
+
+  const sendMail = async (props: IMailInfo) => {
+    const updateSucceed = (): void => {
+      handleApiSucceed({
+        setLoading,
+        setIsFetched,
+      });
+    };
+    const updateFailed = (): void => {
+      handleApiFailed({
+        setLoading,
+        setIsFetched,
+        setIsError,
+      });
+    };
+    const bodyData = {
+      service: props?.service,
+      name: props?.name,
+      email: props?.email,
+      content: props?.content,
+    };
+    const response = await postApiData({ endPoint: 'mail', bodyData });
+
+    if (response.isError) updateFailed();
+    else updateSucceed();
+  };
+
+  const onSubmit = () => {
+    sendMail({ service: 'gmail', name, email, content: comment, phoneNumber });
+    resetInputs();
   };
 
   const disabled: boolean = !name.length || !email.length || !phoneNumber.length || !comment.length;
@@ -36,15 +77,7 @@ const Contact = (): React.ReactElement => {
           <PhoneNumber value={phoneNumber} setPhoneNumber={setPhoneNumber} />
           <Comment value={comment} setComment={setComment} />
           <div id="grid-row" className="w-[50%]">
-            <Primary
-              label="Send"
-              disabled={disabled}
-              onSubmit={() => {
-                sendMail({ service: 'gmail', name, email, content: comment, phoneNumber });
-                resetInputs();
-              }}
-              testId="submit-button"
-            />
+            <Primary label="Send" disabled={disabled} onSubmit={() => onSubmit()} testId="submit-button" />
           </div>
         </div>
       </form>

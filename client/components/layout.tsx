@@ -2,6 +2,9 @@ import React, { ReactNode } from 'react';
 import Header from './header';
 import { useRouter } from 'next/router';
 import { TransitionGroup, Transition } from 'react-transition-group';
+import SuccessAlert from './Modules/Alert/Success';
+import { commonStore } from '@/source/store';
+import FailureAlert from './Modules/Alert/Failure';
 interface IProps {
   children: ReactNode;
 }
@@ -21,11 +24,19 @@ const getTransitionStyles = {
   },
 };
 
+const renderAlert = (isError) => {
+  return isError ? <FailureAlert /> : <SuccessAlert />;
+};
+
 const Layout = ({ children }: IProps) => {
   const router = useRouter();
+  const { isFetched, isError } = commonStore();
 
   return (
     <div className="relative h-[100%]">
+      <div role="alertdialog" className="absolute w-[100%] flex justify-end p-4 z-10">
+        {isFetched && renderAlert(isError)}
+      </div>
       <Header />
       <TransitionGroup style={{ position: 'relative' }}>
         <Transition

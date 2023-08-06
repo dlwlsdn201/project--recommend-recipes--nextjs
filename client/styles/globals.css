@@ -33,15 +33,33 @@ main {
 
 #grid-row {
   margin: 0 auto;
+  width: 100%;
+  display: flex;
 }
 
 #grid-row label {
   display: inline-block;
-  width: 5rem;
+  min-width: 5rem;
+  width: 15%;
+  align-self: center;
 }
 
 #grid-row input {
   display: inline-block;
-  width: 20rem;
+  min-width: 20rem;
+  width: 85%;
   padding: 0.25rem .625rem;
+}
+
+#grid-row textarea {
+  display: inline-block;
+  min-width: 20rem;
+  width: 85%;
+  padding: 0.25rem .625rem;
+  min-height: 12rem;
+}
+
+/* ====== animate css ======= */
+.alert {
+  animation-duration: .5s !important;
 }
