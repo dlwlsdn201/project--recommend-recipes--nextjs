@@ -56,7 +56,6 @@ const Contact = (): React.ReactElement => {
 
     setLoading(true);
     const response = await postApiData({ endPoint: 'mail', bodyData });
-
     if (response.isError) updateFailed();
     else updateSucceed();
   };
