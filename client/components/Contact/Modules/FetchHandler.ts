@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const apiBaseUrl = 'http://localhost:3000/api';
+const API_SSR_URL = process.env.API_SSR_URL;
 
 interface ICommonProps {
   endPoint: string;
@@ -21,7 +21,7 @@ interface IPostProps extends ICommonProps {
 export const getApiData = async (props: IGetProps) => {
   const { endPoint, paramsData } = props;
   try {
-    const response = await axios.get(`${apiBaseUrl}/${endPoint}`, paramsData);
+    const response = await axios.get(`${API_SSR_URL}${endPoint}`, paramsData);
     if (response.status >= 200 && response.status < 300) return { data: response.data, isError: false };
   } catch (error) {
     console.error('Error get fetching data:', error);
@@ -32,7 +32,7 @@ export const getApiData = async (props: IGetProps) => {
 export const postApiData = async (props: IPostProps) => {
   const { endPoint, bodyData } = props;
   try {
-    const response = await axios.post(`${apiBaseUrl}/${endPoint}`, bodyData);
+    const response = await axios.post(`${API_SSR_URL}${endPoint}`, bodyData);
     if (response.status >= 200 && response.status < 300) return { data: response.data, isError: false };
   } catch (error) {
     console.error('Error post api data:', error);
