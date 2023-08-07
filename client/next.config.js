@@ -16,6 +16,11 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.resolve(__dirname, './pages')],
   },
+  env: {
+    API_CLIENT_URL: process.env.API_CLIENT_URL,
+    API_BASE_URL: process.env.API_BASE_URL,
+    BASE_TIMEOUT: process.env.BASE_TIMEOUT,
+  },
   async redirects() {
     return [
       {

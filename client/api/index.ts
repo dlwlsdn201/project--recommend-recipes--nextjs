@@ -1,8 +1,8 @@
 import axios from 'axios';
 
-const BASE_URL = 'http://localhost:8080/';
-const CLIENT_URL = 'http://localhost:3000/';
-const BASE_TIMEOUT = 60000;
+const BASE_URL = process.env.BASE_URL;
+const CLIENT_URL = process.env.CLIENT_URL;
+const BASE_TIMEOUT = Number(process.env.BASE_TIMEOUT);
 
 export const CREATE_RECOMMEND_RECIPES = (bodyData: { userInput: string }) =>
   axios({
