@@ -20,6 +20,9 @@ export const CREATE_LOGIN = () =>
     url: 'login',
     // data: bodyData,
     timeout: BASE_TIMEOUT,
+    headers: {
+      'Access-Control-Allow-Origin': API_SSR_URL,
+    },
   });
 
 export const READ_LOGOUT = () =>
@@ -29,6 +32,9 @@ export const READ_LOGOUT = () =>
     url: 'logout',
     // data: bodyData,
     timeout: BASE_TIMEOUT,
+    headers: {
+      'Access-Control-Allow-Origin': API_SSR_URL,
+    },
   });
 
 export const POST_MAIL = (bodyData) =>
@@ -38,4 +44,7 @@ export const POST_MAIL = (bodyData) =>
     url: 'mail',
     data: bodyData,
     timeout: BASE_TIMEOUT,
+    headers: {
+      'Access-Control-Allow-Origin': API_SSR_URL,
+    },
   });
