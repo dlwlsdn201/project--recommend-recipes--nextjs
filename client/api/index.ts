@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const BASE_URL = process.env.BASE_URL;
-const CLIENT_URL = process.env.CLIENT_URL;
+const API_SSR_URL = process.env.API_SSR_URL;
 const BASE_TIMEOUT = Number(process.env.BASE_TIMEOUT);
 
 export const CREATE_RECOMMEND_RECIPES = (bodyData: { userInput: string }) =>
@@ -16,8 +16,8 @@ export const CREATE_RECOMMEND_RECIPES = (bodyData: { userInput: string }) =>
 export const CREATE_LOGIN = () =>
   axios({
     method: 'POST',
-    baseURL: CLIENT_URL,
-    url: 'api/login',
+    baseURL: API_SSR_URL,
+    url: 'login',
     // data: bodyData,
     timeout: BASE_TIMEOUT,
   });
@@ -25,8 +25,8 @@ export const CREATE_LOGIN = () =>
 export const READ_LOGOUT = () =>
   axios({
     method: 'GET',
-    baseURL: CLIENT_URL,
-    url: 'api/logout',
+    baseURL: API_SSR_URL,
+    url: 'logout',
     // data: bodyData,
     timeout: BASE_TIMEOUT,
   });
