@@ -1,9 +1,10 @@
+import { POST_MAIL } from '@/api';
 import axios from 'axios';
 
 const API_SSR_URL = process.env.API_SSR_URL;
 
 interface ICommonProps {
-  endPoint: string;
+  endPoint?: string;
 }
 
 interface IGetProps extends ICommonProps {
@@ -30,9 +31,9 @@ export const getApiData = async (props: IGetProps) => {
 };
 
 export const postApiData = async (props: IPostProps) => {
-  const { endPoint, bodyData } = props;
+  const { bodyData } = props;
   try {
-    const response = await axios.post(`${API_SSR_URL}${endPoint}`, bodyData);
+    const response = await POST_MAIL(bodyData);
     if (response.status >= 200 && response.status < 300) return { data: response.data, isError: false };
   } catch (error) {
     console.error('Error post api data:', error);

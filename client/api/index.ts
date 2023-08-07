@@ -30,3 +30,12 @@ export const READ_LOGOUT = () =>
     // data: bodyData,
     timeout: BASE_TIMEOUT,
   });
+
+export const POST_MAIL = (bodyData) =>
+  axios({
+    method: 'POST',
+    baseURL: API_SSR_URL,
+    url: 'mail',
+    data: bodyData,
+    timeout: BASE_TIMEOUT,
+  });
