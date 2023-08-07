@@ -41,7 +41,7 @@ export default async function handler(req, res) {
       };
 
       try {
-        const response = await transporter?.sendMail(mailOptions);
+        await transporter?.sendMail(mailOptions);
       } catch (error) {
         throw Error();
       }

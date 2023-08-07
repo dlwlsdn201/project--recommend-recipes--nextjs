@@ -1,7 +1,5 @@
 import { loginStore } from '@/source/store';
 import SnsLogin from './Sns';
-import { CREATE_LOGIN } from '@/api';
-import { useRouter } from 'next/router';
 
 const Login = ({ handleLogin }) => {
   const { userId, setUserId } = loginStore();
