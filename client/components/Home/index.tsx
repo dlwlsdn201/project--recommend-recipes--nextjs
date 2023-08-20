@@ -69,6 +69,7 @@ const MainComponent = () => {
       }
     } catch (error) {
       updateFailed();
+      alert('openai 요금 정책 변경으로 인해 현재 API를 호출할 수 없습니다. (23.08.20)');
       console.error(error);
     } finally {
       setIsFetched(true);

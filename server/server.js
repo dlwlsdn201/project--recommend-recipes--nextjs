@@ -8,6 +8,7 @@ const { Configuration, OpenAIApi } = require('openai');
 
 const apiKey = process.env.OPENAPI_API_KEY;
 const organizationKey = process.env.OPENAPI_ORGANIZATION_ID;
+console.log('@@@TEST@@@ ==>', apiKey);
 const configuration = new Configuration({
   organization: organizationKey,
   apiKey,
