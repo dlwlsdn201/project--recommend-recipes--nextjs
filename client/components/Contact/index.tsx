@@ -52,6 +52,7 @@ const Contact = (): React.ReactElement => {
       name: props?.name,
       email: props?.email,
       content: props?.content,
+      phoneNumber: props?.phoneNumber,
     };
 
     setLoading(true);

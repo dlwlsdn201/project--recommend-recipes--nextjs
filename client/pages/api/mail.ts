@@ -37,7 +37,7 @@ export default async function handler(req, res) {
         to: 'dlwlsdn201@naver.com',
         subject: '[냉장고를 부탁해] 으로부터 메일이 수신되었습니다.',
         // text: body.content,
-        html: `${body.content}<br/><br/><br/><i><strong>${body.name}</strong> 님이 보냄</i><br/>${body.phoneNumber}}`,
+        html: `${body.content}<br/><br/><br/><i><strong>${body.name}</strong> 님이 보냄</i><br/>${body.phoneNumber}`,
       };
 
       try {
