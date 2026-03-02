@@ -8,28 +8,20 @@ import SnsLogin from './Sns';
  * - indigo 계열 제거, primary(orange) 적용
  */
 const Login = ({ handleLogin }) => {
-  const { userId, setUserId } = loginStore();
+  const { setUserId } = loginStore();
 
   return (
     <div className="flex min-h-full flex-1 flex-col justify-center px-4 pb-32 md:px-6 max-w-md mx-auto">
       <div className="card bg-base-100 shadow-xl rounded-2xl p-6 md:p-8">
         <div className="flex flex-col items-center">
-          <Image
-            src="/images/logo.png"
-            alt="냉장고를 부탁해"
-            width={120}
-            height={80}
-            className="object-contain"
-          />
-          <h2 className="mt-6 text-center text-h1 tracking-tight text-base-content">
-            로 그 인
-          </h2>
+          <Image src="/images/logo.png" alt="냉장고를 부탁해" width={120} height={80} className="object-contain" />
+          <h2 className="mt-6 text-center text-h1 tracking-tight text-base-content">로 그 인</h2>
         </div>
 
         <form className="mt-8 space-y-6">
           <div>
             <label htmlFor="email" className="block text-body2 text-base-content">
-              Email address
+              메일
             </label>
             <div className="mt-2">
               <input
@@ -48,7 +40,7 @@ const Login = ({ handleLogin }) => {
           <div>
             <div className="flex items-center justify-between">
               <label htmlFor="password" className="block text-body2 text-base-content">
-                Password
+                비밀번호
               </label>
               <button
                 type="button"
@@ -72,11 +64,7 @@ const Login = ({ handleLogin }) => {
           </div>
 
           <div className="!mt-10">
-            <button
-              type="button"
-              onClick={handleLogin}
-              className="btn btn-primary w-full rounded-2xl"
-            >
+            <button type="button" onClick={handleLogin} className="btn btn-primary w-full rounded-2xl">
               Sign in
             </button>
           </div>

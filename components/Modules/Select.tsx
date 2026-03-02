@@ -20,7 +20,7 @@ interface SelectProps {
  * - dropdown이 Select input 하단에 항상 출력되도록 구현
  * - overflow 부모와 무관하게 올바른 위치에 렌더링
  */
-const Select = ({ options, isExistAll, onChange, value, testId }: SelectProps): JSX.Element => {
+const Select = ({ options, onChange, value, testId }: SelectProps): JSX.Element => {
   const displayOptions = options ?? [];
   const selectedOption = displayOptions.find((o) => Number(o.value) === Number(value)) ?? displayOptions[0];
 
@@ -29,7 +29,6 @@ const Select = ({ options, isExistAll, onChange, value, testId }: SelectProps): 
       <Listbox value={value ?? 0} onChange={(v) => onChange(v)}>
         <Listbox.Button className="select select-bordered w-full focus:input-primary rounded-xl text-left flex items-center justify-between min-h-[2.75rem] bg-base-100 text-base-content">
           <span>{selectedOption?.label ?? '전체'}</span>
-          <ChevronDownIcon className="h-5 w-5 opacity-50 shrink-0" aria-hidden="true" />
         </Listbox.Button>
         <Listbox.Options className="absolute z-50 top-full left-0 right-0 mt-1 w-full max-h-60 overflow-auto rounded-xl bg-base-100 py-1 shadow-xl ring-1 ring-base-content/10 focus:outline-none">
           {displayOptions.map((item) => (

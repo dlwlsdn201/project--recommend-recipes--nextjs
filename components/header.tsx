@@ -92,17 +92,13 @@ export default function Header() {
 						Contact
 					</a>
 				</Popover.Group> */}
-        <div className="hidden tablet:flex laptop:flex-1 laptop:justify-end">
-          {isLogin ? (
+        {isLogin && (
+          <div className="hidden tablet:flex laptop:flex-1 laptop:justify-end">
             <button type="button" onClick={handleLogout} className="btn btn-ghost text-body2">
-              Logout <span aria-hidden="true">&rarr;</span>
+              로그아웃 <span aria-hidden="true">&rarr;</span>
             </button>
-          ) : (
-            <Link href="/" className="btn btn-ghost text-body2">
-              Log in <span aria-hidden="true">&rarr;</span>
-            </Link>
-          )}
-        </div>
+          </div>
+        )}
       </nav>
       <Dialog as="div" className="laptop:hidden" open={mobileMenuOpen} onClose={() => handleDialog.open()}>
         <div className="fixed inset-0 z-10" onClickCapture={() => handleDialog.close()} />
@@ -111,7 +107,6 @@ export default function Header() {
         >
           <div className="flex items-center justify-between">
             <Link href="/home" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
               <Image
                 // className='h-8 w-auto'
                 src={require('../public/images/logo.png').default}
@@ -150,14 +145,14 @@ export default function Header() {
               <div className="py-6 text-base-content">
                 {isLogin ? (
                   <button type="button" onClick={handleLogout} className="btn btn-ghost text-body2">
-                    Logout
+                    로그아웃
                   </button>
                 ) : (
                   <Link
                     href="/"
                     className="-mx-3 block rounded-laptop px-3 py-2.5 text-body1 font-semibold text-base-content hover:bg-base-200"
                   >
-                    Log in
+                    로그인
                   </Link>
                 )}
               </div>
