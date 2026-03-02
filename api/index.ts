@@ -1,8 +1,9 @@
 import axios from 'axios';
 
-// 로컬 개발 시 같은 Next.js 앱의 API 사용 (server/ 제거 후 pages/api/* 라우트 사용)
+// 브라우저에서는 항상 현재 출처 사용 (동일 출처 API). SSR 시에만 env 사용.
+// 프로덕션(Vercel)에서 localhost로 요청하면 timeout 발생하므로 window.location.origin 필수
 const getApiSsrUrl = () => {
-  if (typeof window !== 'undefined' && window.location.origin.includes('localhost')) {
+  if (typeof window !== 'undefined') {
     return window.location.origin;
   }
   return process.env.NEXT_PUBLIC_API_SSR_URL || '';
