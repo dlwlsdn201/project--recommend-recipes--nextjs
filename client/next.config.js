@@ -6,10 +6,8 @@ const allowedOrigins = ['https://project-recommend-recipes-nextjs-client.vercel.
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  // react-markdown v10은 ESM-only. transpilePackages와 esmExternals: 'loose'를 동시에 쓰면
-  // "exports is not defined" 발생. react-markdown은 transpile에서 제외하고 loose 모드로 외부 로드.
-  transpilePackages: ['remark-gfm'],
   experimental: {
+    // react-markdown v10은 ESM-only. esmExternals: 'loose'를 사용하여 외부 모듈을 로드.
     esmExternals: 'loose',
   },
   images: {
