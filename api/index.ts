@@ -1,8 +1,16 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.API_BASE_URL;
-const API_SSR_URL = process.env.API_SSR_URL;
-const BASE_TIMEOUT = Number(process.env.BASE_TIMEOUT);
+// 로컬 개발 시 같은 Next.js 앱의 API 사용 (server/ 제거 후 pages/api/* 라우트 사용)
+const getApiSsrUrl = () => {
+  if (typeof window !== 'undefined' && window.location.origin.includes('localhost')) {
+    return window.location.origin;
+  }
+  return process.env.NEXT_PUBLIC_API_SSR_URL || '';
+};
+
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL;
+const API_SSR_URL = getApiSsrUrl();
+const BASE_TIMEOUT = Number(process.env.NEXT_PUBLIC_BASE_TIMEOUT);
 
 export const CREATE_RECOMMEND_RECIPES = (bodyData: { userInput: string }) =>
   axios({
@@ -17,7 +25,7 @@ export const CREATE_LOGIN = () =>
   axios({
     method: 'POST',
     baseURL: API_SSR_URL,
-    url: 'login',
+    url: 'api/login',
     // data: bodyData,
     timeout: BASE_TIMEOUT,
     headers: {
@@ -29,7 +37,7 @@ export const READ_LOGOUT = () =>
   axios({
     method: 'GET',
     baseURL: API_SSR_URL,
-    url: 'logout',
+    url: 'api/logout',
     // data: bodyData,
     timeout: BASE_TIMEOUT,
     headers: {
@@ -41,7 +49,7 @@ export const POST_MAIL = (bodyData) =>
   axios({
     method: 'POST',
     baseURL: API_SSR_URL,
-    url: 'mail',
+    url: 'api/mail',
     data: bodyData,
     timeout: BASE_TIMEOUT,
     headers: {

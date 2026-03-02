@@ -1,7 +1,8 @@
 const path = require('path');
 const cors = require('cors');
 
-const allowedOrigins = ['https://project-recommend-recipes-nextjs-client.vercel.app'];
+// const allowedOrigins = ['https://project-recommend-recipes-nextjs-client.vercel.app'];
+const allowedOrigins = ['http://localhost:3000'];
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -24,9 +25,9 @@ const nextConfig = {
     includePaths: [path.resolve(__dirname, './pages')],
   },
   env: {
-    API_SSR_URL: process.env.API_SSR_URL,
-    API_BASE_URL: process.env.API_BASE_URL,
-    BASE_TIMEOUT: process.env.BASE_TIMEOUT,
+    NEXT_PUBLIC_API_SSR_URL: process.env.NEXT_PUBLIC_API_SSR_URL,
+    NEXT_PUBLIC_API_BASE_URL: process.env.NEXT_PUBLIC_API_BASE_URL,
+    NEXT_PUBLIC_BASE_TIMEOUT: process.env.NEXT_PUBLIC_BASE_TIMEOUT,
   },
 
   async headers() {
@@ -36,7 +37,7 @@ const nextConfig = {
         headers: [
           {
             key: 'Access-Control-Allow-Origin',
-            value: '*', // 모든 도메인 허용하지 않고, 필요에 따라 allowedOrigins로 변경
+            value: allowedOrigins.join(','),
           },
         ],
       },

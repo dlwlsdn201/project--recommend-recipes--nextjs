@@ -44,7 +44,7 @@ const HomePage = () => {
         modal={modal}
         setOpen={() => setModal(true)}
         setClose={() => updateClosed()}
-        customIcon={<CubeIcon className="h-6 w-6 text-purple-400" aria-hidden="true" />}
+        customIcon={<CubeIcon className="h-6 w-6 text-primary" aria-hidden="true" />}
         content={formattedCarousel}
         testId="homePage-result-modal"
       />

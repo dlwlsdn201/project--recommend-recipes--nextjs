@@ -16,14 +16,18 @@ export default async function handler(req, res) {
   // 메일 전송 함수
 
   if (req.method === 'POST') {
-    const transfer: string = process.env.NEXT_PUBLIC_NODE_MAILER_USERNAME;
-    const pass: string = process.env.NEXT_PUBLIC_NODE_MAILER_PASS;
-
+    const transfer: string = process.env.NODE_MAILER_USERNAME;
+    const pass: string = process.env.NODE_MAILER_PASS;
+    console.log({ transfer, pass });
     const sendMail = async () => {
       // 메일 발신자 설정
       const transporter = nodemailer.createTransport({
         // service: req?.service ?? 'Gmail',
-        service: 'gmail',
+        // service: 'naver',
+        host: 'smtp.naver.com',
+        /** @see https://nodemailer.com/smtp/well-known-services#list-of-built-in-services */
+        port: 587,
+        secure: false,
         auth: {
           user: transfer,
           pass,
@@ -33,24 +37,22 @@ export default async function handler(req, res) {
       const body: IPostBody = req.body;
 
       const mailOptions = {
-        from: body.email,
-        to: 'dlwlsdn201@naver.com',
+        from: transfer, // 정식 인증된 수신자의 Naver 메일 주소
+        to: transfer, // 수신자의 Naver 메일 주소
+        replyTo: body.email, // 송신자의 메일 주소
         subject: '[냉장고를 부탁해] 으로부터 메일이 수신되었습니다.',
         // text: body.content,
         html: `${body.content}<br/><br/><br/><i><strong>${body.name}</strong> 님이 보냄</i><br/>${body.phoneNumber}`,
       };
 
-      try {
-        await transporter?.sendMail(mailOptions);
-      } catch (error) {
-        throw Error();
-      }
+      await transporter?.sendMail(mailOptions);
     };
 
     try {
       await sendMail();
       res.status(200).json({ message: 'Success' });
     } catch (error) {
+      console.error('[mail API]', error);
       res.status(500).json({ error: 'API Error' });
     }
   } else {

@@ -17,7 +17,7 @@ const TextArea = ({ placeholder, value, onChange, testId, id }: TextAreaProps): 
       onChange={(e) => {
         onChange(e.target.value);
       }}
-      className="input input-bordered input-primary w-full text-white"
+      className="input min-h-20 input-bordered w-full rounded-xl text-body2 text-base-content focus:input-primary placeholder:text-base-content/50"
       value={value}
     />
   );

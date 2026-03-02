@@ -70,24 +70,23 @@ const Contact = (): React.ReactElement => {
 
   return (
     <Loading spinning={loading}>
-      <div
-        id="inner-container"
-        className="border-2 border-gray-800 grid gap-y-8 py-6 laptop:px-32 mobile:px-4 tablet:px-8"
-      >
-        <div id="title-wrapper" className="w-[100%] grid-cols-1">
-          <h1 className="col-span-1 text-center text-2xl">Contact Me</h1>
-        </div>
-        <form>
-          <div id="form-wrapper" className="grid grid-cols-1 gap-8">
-            <Name value={name} setName={setName} />
-            <Email value={email} setEmail={setEmail} />
-            <PhoneNumber value={phoneNumber} setPhoneNumber={setPhoneNumber} />
-            <Comment value={comment} setComment={setComment} />
-            <div id="grid-row" className="w-[50%]">
-              <Primary label="Send" disabled={disabled} onSubmit={() => onSubmit()} testId="submit-button" />
+      <div className="root-container flex-1 basis-0 max-w-2xl">
+        <div className="card bg-base-100 shadow-xl rounded-2xl p-6 md:p-8">
+          <span id="title-wrapper">
+            <h1 className="text-center text-h1 text-base-content">Contact Me</h1>
+          </span>
+          <form className="mt-8">
+            <div id="form-wrapper" className="grid grid-cols-1 gap-8">
+              <Name value={name} setName={setName} />
+              <Email value={email} setEmail={setEmail} />
+              <PhoneNumber value={phoneNumber} setPhoneNumber={setPhoneNumber} />
+              <Comment value={comment} setComment={setComment} />
+              <div id="grid-row">
+                <Primary label="Send" disabled={disabled} onSubmit={() => onSubmit()} testId="submit-button" />
+              </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </Loading>
   );

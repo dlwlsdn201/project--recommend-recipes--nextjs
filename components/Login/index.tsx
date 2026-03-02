@@ -1,26 +1,34 @@
+import Image from 'next/image';
 import { loginStore } from '@/source/store';
 import SnsLogin from './Sns';
 
+/**
+ * 로그인 폼 컴포넌트
+ * - Clean & Warm 디자인 시스템 적용 (card, input-bordered, btn-primary)
+ * - indigo 계열 제거, primary(orange) 적용
+ */
 const Login = ({ handleLogin }) => {
   const { userId, setUserId } = loginStore();
 
   return (
-    <div className="flex min-h-full flex-1 flex-col justify-center px-6 pb-32 laptop:px-8">
-      <div className="mobile:mx-auto mobile:w-full mobile:max-w-sm">
-        <img
-          className="mx-auto h-10 w-auto"
-          src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-          alt="Your Company"
-        />
-        {/* <img
-				/> */}
-        <h2 className=" animate-bounce mt-10 text-center text-2xl font-bold leading-9 tracking-tight">로 그 인</h2>
-      </div>
+    <div className="flex min-h-full flex-1 flex-col justify-center px-4 pb-32 md:px-6 max-w-md mx-auto">
+      <div className="card bg-base-100 shadow-xl rounded-2xl p-6 md:p-8">
+        <div className="flex flex-col items-center">
+          <Image
+            src="/images/logo.png"
+            alt="냉장고를 부탁해"
+            width={120}
+            height={80}
+            className="object-contain"
+          />
+          <h2 className="mt-6 text-center text-h1 tracking-tight text-base-content">
+            로 그 인
+          </h2>
+        </div>
 
-      <div className="mt-10 mobile:mx-auto mobile:w-full mobile:max-w-sm">
-        <form className="space-y-6">
+        <form className="mt-8 space-y-6">
           <div>
-            <label htmlFor="email" className="block text-sm font-medium leading-6 ">
+            <label htmlFor="email" className="block text-body2 text-base-content">
               Email address
             </label>
             <div className="mt-2">
@@ -30,30 +38,25 @@ const Login = ({ handleLogin }) => {
                 type="email"
                 autoComplete="email"
                 value="sampleId@gmail.com"
-                onChange={(e) => {
-                  setUserId(e.target.value);
-                }}
-                // onChange={(e) => onChange(e.target.value)}
+                onChange={(e) => setUserId(e.target.value)}
                 required
-                className="block w-full rounded-md border-0 py-1.5 px-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 mobile:text-sm mobile:leading-6"
+                className="input input-bordered w-full rounded-xl text-body2 text-base-content focus:input-primary placeholder:text-base-content/50"
               />
             </div>
           </div>
 
           <div>
             <div className="flex items-center justify-between">
-              <label htmlFor="password" className="block text-sm font-medium leading-6 ">
+              <label htmlFor="password" className="block text-body2 text-base-content">
                 Password
               </label>
-              <div className="text-sm">
-                <a
-                  href="#"
-                  onClick={() => alert('준비 중입니다.')}
-                  className="font-semibold text-indigo-600 hover:text-indigo-500"
-                >
-                  비밀번호 찾기
-                </a>
-              </div>
+              <button
+                type="button"
+                onClick={() => alert('준비 중입니다.')}
+                className="text-body2 font-semibold text-primary hover:text-primary/80"
+              >
+                비밀번호 찾기
+              </button>
             </div>
             <div className="mt-2">
               <input
@@ -63,7 +66,7 @@ const Login = ({ handleLogin }) => {
                 autoComplete="current-password"
                 required
                 value="00000000"
-                className="block w-full rounded-md border-0 py-1.5 px-2 text-white shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 mobile:text-sm mobile:leading-6"
+                className="input input-bordered w-full rounded-xl text-body2 text-base-content focus:input-primary placeholder:text-base-content/50"
               />
             </div>
           </div>
@@ -72,22 +75,22 @@ const Login = ({ handleLogin }) => {
             <button
               type="button"
               onClick={handleLogin}
-              className="flex transition ease-in-out delay-75 hover:-translate-y-1 hover:scale-105 hover:bg-indigo-600 duration-500 w-full justify-center rounded-md bg-indigo-500 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+              className="btn btn-primary w-full rounded-2xl"
             >
               Sign in
             </button>
           </div>
         </form>
 
-        <p className="mt-10 text-center text-sm text-gray-500">
+        <p className="mt-10 text-center text-caption text-base-content/70">
           아직 회원이 아니신가요?{' '}
-          <a
-            href="#"
+          <button
+            type="button"
             onClick={() => alert('준비 중입니다.')}
-            className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500 "
+            className="text-body2 font-semibold text-primary hover:text-primary/80"
           >
             회원가입
-          </a>
+          </button>
         </p>
         <SnsLogin />
       </div>

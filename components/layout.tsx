@@ -33,12 +33,12 @@ const Layout = ({ children }: IProps) => {
   const { isFetched, isError } = commonStore();
 
   return (
-    <div className="relative h-[100%]">
-      <div role="alertdialog" className="absolute w-[100%] flex justify-end p-4 z-10">
+    <div className="flex flex-col h-screen overflow-hidden">
+      <div role="alertdialog" className="absolute w-[100%] flex justify-end z-20">
         {isFetched && renderAlert(isError)}
       </div>
       <Header />
-      <TransitionGroup style={{ position: 'relative', height: 'calc(100% - 6rem)' }}>
+      <TransitionGroup className="relative flex-1 min-h-0 overflow-hidden">
         <Transition
           key={router.pathname}
           timeout={{
@@ -48,19 +48,18 @@ const Layout = ({ children }: IProps) => {
         >
           {(status) => (
             <div
+              className="h-full flex flex-col"
               style={{
                 ...getTransitionStyles[status],
-                height: '100%',
               }}
             >
-              <main>
-                <div className="h-[100%] w-[100%] p-[2em] ">{children}</div>
+              <main className="flex-1 min-h-0 overflow-y-auto bg-base-200">
+                <div className="w-full flex justify-center p-6 md:p-6">{children}</div>
               </main>
             </div>
           )}
         </Transition>
       </TransitionGroup>
-      {/* <footer>footer</footer> */}
     </div>
   );
 };

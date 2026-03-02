@@ -16,7 +16,7 @@ const Primary = ({ label, onSubmit, testId, disabled, style }: Props): JSX.Eleme
       onClick={() => onSubmit()}
       disabled={disabled}
       type="button"
-      className="btn btn-xs w-[100%] btn-active btn-primary mobile:btn-sm tablet:btn-md laptop:btn-lg"
+      className="btn btn-primary rounded-2xl w-full text-body2 mobile:btn-sm tablet:btn-md laptop:btn-lg"
     >
       {label ?? '실행'}
     </button>

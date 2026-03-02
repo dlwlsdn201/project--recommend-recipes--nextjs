@@ -1,26 +1,35 @@
 import React from 'react';
 import { SNS_GOOGLE, SNS_KAKAO } from '../Modules/Icons';
 
+/**
+ * SNS 로그인 영역
+ * - Clean & Warm 디자인 시스템 적용 (bg-base-200, text-base-content)
+ * - 기존 slate 계열 제거
+ */
 const SnsLogin = () => {
   const showLoginModal = () => alert('준비 중입니다.');
 
   return (
-    <div className="container mt-4" data-testid="sns-login">
-      <div className="inner-container w-[100%] inline-grid grid-cols-3 grid-flow-col-dense grid-rows-1">
-        <div className="h-[100%] bg-slate-800 col-span-1  flex align-middle px-4 py-4">
-          <span className="title my-[auto] break-keep">SNS 로그인</span>
-        </div>
-        <div className="inline-grid grid-flow-col col-span-2 gap-6 bg-slate-900 px-8">
-          <span className="sns-item my-[auto] justify-self-center col-span-1">
-            <a href="#" onClick={() => showLoginModal()}>
-              {SNS_KAKAO()}
-            </a>
-          </span>
-          <span className="sns-item my-[auto] justify-self-center col-span-1">
-            <a href="#" onClick={() => showLoginModal()}>
-              {SNS_GOOGLE()}
-            </a>
-          </span>
+    <div className="mt-6 rounded-xl bg-base-200 p-4" data-testid="sns-login">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <span className="text-body2 text-base-content">SNS 로그인</span>
+        <div className="flex gap-6 justify-center sm:justify-end">
+          <button
+            type="button"
+            className="sns-item hover:opacity-80 transition-opacity"
+            onClick={showLoginModal}
+            aria-label="카카오 로그인"
+          >
+            {SNS_KAKAO()}
+          </button>
+          <button
+            type="button"
+            className="sns-item hover:opacity-80 transition-opacity"
+            onClick={showLoginModal}
+            aria-label="구글 로그인"
+          >
+            {SNS_GOOGLE()}
+          </button>
         </div>
       </div>
     </div>
