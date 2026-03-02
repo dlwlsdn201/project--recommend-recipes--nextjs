@@ -44,6 +44,4 @@
 ## 배포 방식
 - ![Static Badge](https://img.shields.io/badge/Vercel-blue.svg?logo=vercel&color=000000)
 ## 구조
-- git workspace 
-  - client
-  - server
+- 단일 Next.js 프로젝트 (pages/, components/, api/ 등)

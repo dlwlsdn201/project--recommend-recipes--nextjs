@@ -24,6 +24,7 @@ module.exports = {
 		'^@/static/(.*)$': '<rootDir>/static/$1',
 		'^@/types/(.*)$': '<rootDir>/types/$1',
 		'^@/source/(.*)$': '<rootDir>/source/$1',
+		'^@/api$': '<rootDir>/api',
 		'^@/api/(.*)$': '<rootDir>/api/$1'
 	},
 	// setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
