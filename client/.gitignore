@@ -1,8 +1,0 @@
-# build
-.next
-
-# packages
-node_modules
-
-# env
-.env.local
