@@ -14,16 +14,14 @@ interface IProps {
 
 const WithIndicatorBtn = (props: IProps): React.ReactElement => {
   const { contents } = props;
-
+  console.log(contents);
   return (
     <>
       <div className="carousel w-full">
         {contents.map((content: TContent, index: number) => (
           <div id={`item${index + 1}`} key={String(index)} className="carousel-item w-full min-w-[40vh]">
             <div className="inner-wrapper w-full flex items-center flex-col px-4">
-              <div className="title mt-4 mb-6">
-                <strong className="text-3xl text-purple-400">{content?.title}</strong>
-              </div>
+              {/* title에 ** 볼드 등 마크다운이 포함될 수 있으므로 ReactMarkdown으로 렌더링 */}
               <div className="text-left w-full prose prose-invert max-w-none">
                 <ReactMarkdown remarkPlugins={[remarkGfm]}>{content?.desc}</ReactMarkdown>
               </div>
