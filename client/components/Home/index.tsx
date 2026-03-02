@@ -8,6 +8,11 @@ import { CREATE_RECOMMEND_RECIPES } from '../../api';
 import { formatInputDataToRequest } from './Handlers';
 import Loading from '../Modules/Loading';
 import { handleApiFailed, handleApiSucceed } from '../Contact/Modules/FetchHandler';
+import { GoogleGenAI } from '@google/genai';
+
+const genAI = new GoogleGenAI({
+  apiKey: process.env.NEXT_PUBLIC_GOOGLE_GEMINI_API_KEY || '',
+});
 
 const MainComponent = () => {
   const { setIsFetched, setIsError, loading, setLoading } = commonStore();
@@ -28,7 +33,7 @@ const MainComponent = () => {
   } = mainStore();
 
   // === update state
-  const updateResult = (value: String): void => {
+  const updateResult = (value: string): void => {
     setApiData(value);
   };
 
@@ -47,7 +52,7 @@ const MainComponent = () => {
     });
   };
 
-  // Chat GPT OpenAI API 요청 함수
+  // Google Gemini API 요청 함수
   const onFinishForm = async () => {
     try {
       setLoading(true);
@@ -59,17 +64,22 @@ const MainComponent = () => {
         materials: [material1, material2, material3],
       };
       const formattedUserInput = formatInputDataToRequest(inputValues);
-      const response = await CREATE_RECOMMEND_RECIPES({
-        userInput: formattedUserInput,
+
+      // Gemini API 직접 호출
+      const result = await genAI.models.generateContent({
+        model: 'gemini-3-flash-preview',
+        contents: formattedUserInput,
       });
-      if (response.status >= 200 && response.status < 300) {
-        updateResult(response?.data?.choices[0]?.text);
-        // const formattedResult = formatResult(response?.data?.choices[0]?.text);
+
+      if (result.text) {
+        updateResult(result.text);
         updateSucceed();
+      } else {
+        throw new Error('No content generated');
       }
     } catch (error) {
       updateFailed();
-      alert('openai 요금 정책 변경으로 인해 현재 API를 호출할 수 없습니다. (23.08.20)');
+      alert('레시피 정보를 가져오는 중 오류가 발생했습니다. 다시 시도해주세요.');
       console.error(error);
     } finally {
       setIsFetched(true);
@@ -90,7 +100,7 @@ const MainComponent = () => {
             </div>
             <div className="desc mobile:text-sm laptop:text-2xl">
               <p className="my-8  mb-24">
-                작성한 재료들과 선택한 음식 종류를 기반으로 chatGPT 가 추천 음식 레시피 몇 가지를 소개해 줄 것입니다.
+                작성한 재료들과 선택한 음식 종류를 기반으로 Google Gemini가 추천 음식 레시피 몇 가지를 소개해 줄 것입니다.
               </p>
               <div>
                 <ul className="list-disc text-xl leading-loose ml-6">

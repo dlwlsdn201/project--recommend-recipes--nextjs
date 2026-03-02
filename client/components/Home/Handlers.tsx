@@ -43,64 +43,35 @@ export const formatInputDataToRequest = (inputValues: IinputValues) => {
 };
 
 export const formatResult = (
-	rowData: string
-): Array<{ title: string; desc: ReactNode }> => {
-	const insertToResult = (
-		resultArray: any[],
-		title: string,
-		descriptions: React.ReactElement[]
-	) => {
-		const result = resultArray;
-		result.push({
-			title,
-			desc: <ul>{descriptions}</ul>
-		});
+  rowData: string
+): Array<{ title: string; desc: string }> => {
+  let result: Array<{ title: string; desc: string }> = [];
 
-		return result;
-	};
+  if (rowData) {
+    // Split by header "###" which Gemini usually uses for menu titles
+    // If not found, it will just be one big slide
+    const sections = rowData.split(/(?=###)/g).filter(section => section.trim().length > 0);
 
-	let result: Array<{ title: string; desc: string | React.ReactElement }> = [];
-	if (rowData) {
-		const lines: string[] = rowData
-			.split('\n')
-			.map((line: string): string => line.trim())
-			.filter((line: string): boolean => line !== '');
+    sections.forEach((section) => {
+      const lines = section.split('\n');
+      const firstLine = lines[0].replace('###', '').trim();
+      const title = firstLine || '추천 메뉴';
+      const desc = section.trim(); // Keep the whole section including the header for better markdown rendering
 
-		let currentCategory: string = '';
-		let currentRecipe: React.ReactElement[] = [];
-		let isChanged: boolean = false;
-		lines.forEach((item: string, index) => {
-			if (item.startsWith('음식 추천 메뉴') || item.startsWith('추천 메뉴')) {
-				// Title
-				// Extract the category title
-				const categoryTitle = item.split(':')[1].trim();
-				if (currentCategory.length > 0 && currentRecipe.length > 0) {
-					isChanged = true;
-					if (isChanged) {
-						// 제목, 설명이 이미 존재할 경우
-						result = insertToResult(result, currentCategory, currentRecipe);
-						currentCategory = '';
-						currentRecipe = [];
-					}
-				}
-				currentCategory = categoryTitle;
-			} else if (item.startsWith('조리 레시피:')) {
-				// Ignore the recipe description
-				return;
-			} else {
-				// Append the recipe step to the current recipe
-				// console.log({ item });
-				const validText = item.split('.')[1] && item.split('.')[1].length > 0;
-				if (validText) currentRecipe.push(<li>{item}</li>); // 빈 내용 레시피 line 이 아닐 경우에만 삽입
-				isChanged = false;
-				if (lines.length === index + 1) isChanged = true; // 마지막 item일 경우
-				if (isChanged) {
-					result = insertToResult(result, currentCategory, currentRecipe);
-					currentCategory = '';
-					currentRecipe = [];
-				}
-			}
-		});
-	}
-	return result;
+      result.push({
+        title,
+        desc,
+      });
+    });
+
+    // Fallback if no sections were parsed
+    if (result.length === 0) {
+      result.push({
+        title: '추천 결과',
+        desc: rowData,
+      });
+    }
+  }
+
+  return result;
 };

@@ -12,5 +12,8 @@
 		"client:build": "yarn workspace client next build",
 		"client:test": "yarn workspace client test",
 		"server": "yarn workspace server start server.js"
+	},
+	"dependencies": {
+		"remark-gfm": "^4.0.1"
 	}
 }
