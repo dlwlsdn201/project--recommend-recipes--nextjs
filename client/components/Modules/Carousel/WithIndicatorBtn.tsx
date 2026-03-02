@@ -14,7 +14,7 @@ interface IProps {
 
 const WithIndicatorBtn = (props: IProps): React.ReactElement => {
   const { contents } = props;
-  console.log(contents);
+
   return (
     <>
       <div className="carousel w-full">
