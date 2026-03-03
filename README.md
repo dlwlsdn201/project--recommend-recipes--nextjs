@@ -2,6 +2,10 @@
 
 Google Gemini API를 활용해 사용자가 입력한 재료를 기반으로 맞춤형 요리 레시피를 추천하는 웹 애플리케이션입니다.
 
+## 데모 링크
+
+: https://project-recommend-recipes-nextjs.vercel.app/
+
 ## 프리뷰
 
 > 로그인 페이지
