@@ -52,36 +52,31 @@ export default function Header() {
     }
   }, [animateType]);
 
+  // 로그인 페이지(/)에서는 nav를 숨김 → pathname이 /home 등으로 바뀐 뒤 Transition enter 단계에서 메인과 동시에 페이드인
+  const showNav = isLogin && router.pathname !== '/';
+
   return (
     <header className="sticky top-0 z-10 shrink-0 h-24 bg-base-100 text-base-content shadow-sm">
-      <nav
-        className=" flex max-w-[100%] h-full bg-base-100 items-center justify-between p-6 laptop:px-8"
-        aria-label="Global"
-      >
-        <div className="flex laptop:flex-1 items-center">
-          <Link href="/home" className="-m-1.5 p-1.5">
-            <Image
-              // className='h-8 w-auto'
-              src={require('../public/images/logo.png').default}
-              alt="Logo"
-              width={72}
-              height={64}
-            />
-          </Link>
-          {/* <h3 className='text-white text-xl ml-2'>냉장고를 부탁해</h3> */}
-        </div>
-        <div className={`flex tablet:hidden ${isLogin ? 'initial' : 'hidden'}`}>
-          <button
-            type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-base-content/70 hover:text-base-content btn-ghost"
-            onClick={() => handleDialog.open()}
-          >
-            <span className="sr-only">Open main menu</span>
-            <Bars3Icon className="h-6 w-6" aria-hidden="true" />
-          </button>
-        </div>
-        {isLogin && <Navbar />}
-        {/* <Popover.Group className='hidden laptop:flex laptop:gap-x-12'>
+      {showNav && (
+        <nav className=" flex max-w-[100%] h-full  items-center justify-between p-6 laptop:px-8" aria-label="Global">
+          <div className="flex laptop:flex-1 items-center">
+            <Link href="/home" className="-m-1.5 p-1.5">
+              <Image className="rounded-lg" src={'/images/logo.png'} alt="Logo" width={75} height={75} />
+            </Link>
+            {/* <h3 className='text-white text-xl ml-2'>냉장고를 부탁해</h3> */}
+          </div>
+          <div className={`flex tablet:hidden ${isLogin ? 'initial' : 'hidden'}`}>
+            <button
+              type="button"
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-base-content/70 hover:text-base-content btn-ghost"
+              onClick={() => handleDialog.open()}
+            >
+              <span className="sr-only">Open main menu</span>
+              <Bars3Icon className="h-6 w-6" aria-hidden="true" />
+            </button>
+          </div>
+          <Navbar />
+          {/* <Popover.Group className='hidden laptop:flex laptop:gap-x-12'>
 					<a href='#' className='text-sm font-semibold leading-6 text-white'>
 						Home
 					</a>
@@ -92,14 +87,14 @@ export default function Header() {
 						Contact
 					</a>
 				</Popover.Group> */}
-        {isLogin && (
+
           <div className="hidden tablet:flex laptop:flex-1 laptop:justify-end">
             <button type="button" onClick={handleLogout} className="btn btn-ghost text-body2">
               로그아웃 <span aria-hidden="true">&rarr;</span>
             </button>
           </div>
-        )}
-      </nav>
+        </nav>
+      )}
       <Dialog as="div" className="laptop:hidden" open={mobileMenuOpen} onClose={() => handleDialog.open()}>
         <div className="fixed inset-0 z-10" onClickCapture={() => handleDialog.close()} />
         <Dialog.Panel

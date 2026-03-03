@@ -7,7 +7,7 @@ export const rootStore = (set) => ({});
 export const commonStore = create<INTERFACE_commonStore>((set) => ({
   isLogin: false,
   setIsLogin: (value: boolean) => set(() => ({ isLogin: value })),
-  loading: false,
+  loading: true,
   setLoading: (value: boolean) => set(() => ({ loading: value })),
   isError: false,
   setIsError: (value: boolean) => set(() => ({ isError: value })),

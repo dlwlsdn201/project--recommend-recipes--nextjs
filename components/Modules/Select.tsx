@@ -13,6 +13,7 @@ interface SelectProps {
   onChange: Function;
   value: number;
   testId: string;
+  disabled?: boolean;
 }
 
 /**
@@ -20,13 +21,13 @@ interface SelectProps {
  * - dropdown이 Select input 하단에 항상 출력되도록 구현
  * - overflow 부모와 무관하게 올바른 위치에 렌더링
  */
-const Select = ({ options, onChange, value, testId }: SelectProps): JSX.Element => {
+const Select = ({ options, onChange, value, testId, disabled = false }: SelectProps): JSX.Element => {
   const displayOptions = options ?? [];
   const selectedOption = displayOptions.find((o) => Number(o.value) === Number(value)) ?? displayOptions[0];
 
   return (
     <div className="relative w-full" data-testid={testId}>
-      <Listbox value={value ?? 0} onChange={(v) => onChange(v)}>
+      <Listbox value={value ?? 0} onChange={(v) => onChange(v)} disabled={disabled}>
         <Listbox.Button className="select select-bordered w-full focus:input-primary rounded-xl text-left flex items-center justify-between min-h-[2.75rem] bg-base-100 text-base-content">
           <span>{selectedOption?.label ?? '전체'}</span>
         </Listbox.Button>

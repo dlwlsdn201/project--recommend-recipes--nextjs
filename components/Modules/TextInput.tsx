@@ -6,9 +6,10 @@ interface TextInputProps {
   onChange: Function;
   testId?: string;
   id?: string;
+  disabled?: boolean;
 }
 
-const TextInput = ({ placeholder, value, onChange, testId, id }: TextInputProps): JSX.Element => {
+const TextInput = ({ placeholder, value, onChange, testId, id, disabled }: TextInputProps): JSX.Element => {
   return (
     <input
       id={id}
@@ -20,6 +21,7 @@ const TextInput = ({ placeholder, value, onChange, testId, id }: TextInputProps)
       }}
       className="input input-bordered w-full focus:input-primary rounded-xl text-body2 text-base-content"
       value={value}
+      disabled={disabled}
     />
   );
 };
