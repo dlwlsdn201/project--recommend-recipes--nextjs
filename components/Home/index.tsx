@@ -110,86 +110,92 @@ const MainComponent = () => {
 
         {/* 입력 폼 카드 */}
         <div className="card bg-base-100 shadow-xl rounded-2xl">
-          <div className="card-body gap-6">
-            <h2 className="text-h2 text-base-content">조건 선택</h2>
-            <div className="grid grid-cols-1 tablet:grid-cols-3 gap-4">
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text text-body2">맵기 정도</span>
-                </label>
-                <Select
-                  testId="homePage-filter-spicy"
-                  value={spicyFilter}
-                  options={spicyFilterItems}
-                  isExistAll
-                  onChange={(value) => setSpicyFilter(Number(value))}
-                />
+          <Loading spinning={loading}>
+            <div className="card-body gap-6">
+              <h2 className="text-h2 text-base-content">조건 선택</h2>
+              <div className="grid grid-cols-1 tablet:grid-cols-3 gap-4">
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text text-body2">맵기 정도</span>
+                  </label>
+                  <Select
+                    testId="homePage-filter-spicy"
+                    value={spicyFilter}
+                    options={spicyFilterItems}
+                    isExistAll
+                    disabled={loading}
+                    onChange={(value) => setSpicyFilter(Number(value))}
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text text-body2">종류</span>
+                  </label>
+                  <Select
+                    testId="homePage-filter-menuType"
+                    value={menuTypeFilter}
+                    options={menuTypeFilterItems}
+                    isExistAll
+                    disabled={loading}
+                    onChange={(value) => setMenuTypeFilter(Number(value))}
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text text-body2">목적</span>
+                  </label>
+                  <Select
+                    testId="homePage-filter-concept"
+                    value={conceptFilter}
+                    options={conceptFilterItems}
+                    isExistAll
+                    disabled={loading}
+                    onChange={(value) => setConceptFilter(Number(value))}
+                  />
+                </div>
               </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text text-body2">종류</span>
-                </label>
-                <Select
-                  testId="homePage-filter-menuType"
-                  value={menuTypeFilter}
-                  options={menuTypeFilterItems}
-                  isExistAll
-                  onChange={(value) => setMenuTypeFilter(Number(value))}
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text text-body2">목적</span>
-                </label>
-                <Select
-                  testId="homePage-filter-concept"
-                  value={conceptFilter}
-                  options={conceptFilterItems}
-                  isExistAll
-                  onChange={(value) => setConceptFilter(Number(value))}
-                />
-              </div>
-            </div>
 
-            <h2 className="text-h2 text-base-content mt-4">재료 입력</h2>
-            <div className="grid grid-cols-1 tablet:grid-cols-3 gap-4">
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text text-body2">재료1</span>
-                </label>
-                <TextInput
-                  testId="homePage-input-material1"
-                  placeholder="입력 (필수)"
-                  onChange={(value) => setMaterials('material1', value)}
-                  value={material1}
-                />
+              <h2 className="text-h2 text-base-content mt-4">재료 입력</h2>
+              <div className="grid grid-cols-1 tablet:grid-cols-3 gap-4">
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text text-body2">재료1</span>
+                  </label>
+                  <TextInput
+                    testId="homePage-input-material1"
+                    placeholder="입력 (필수)"
+                    onChange={(value) => setMaterials('material1', value)}
+                    value={material1}
+                    disabled={loading}
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text text-body2">재료2</span>
+                  </label>
+                  <TextInput
+                    testId="homePage-input-material2"
+                    placeholder="입력"
+                    onChange={(value) => setMaterials('material2', value)}
+                    value={material2}
+                    disabled={loading}
+                  />
+                </div>
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text text-body2">재료3</span>
+                  </label>
+                  <TextInput
+                    testId="homePage-input-material3"
+                    placeholder="입력"
+                    onChange={(value) => setMaterials('material3', value)}
+                    value={material3}
+                    disabled={loading}
+                  />
+                </div>
               </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text text-body2">재료2</span>
-                </label>
-                <TextInput
-                  testId="homePage-input-material2"
-                  placeholder="입력"
-                  onChange={(value) => setMaterials('material2', value)}
-                  value={material2}
-                />
-              </div>
-              <div className="form-control">
-                <label className="label">
-                  <span className="label-text text-body2">재료3</span>
-                </label>
-                <TextInput
-                  testId="homePage-input-material3"
-                  placeholder="입력"
-                  onChange={(value) => setMaterials('material3', value)}
-                  value={material3}
-                />
-              </div>
-            </div>
 
-            <div className="mt-6">
-              <Loading spinning={loading}>
+              <div className="mt-6">
                 <Primary
                   label="추천 받기"
                   onSubmit={onFinishForm}
@@ -197,9 +203,9 @@ const MainComponent = () => {
                   testId="homePage-submit-button"
                   style={{ height: '3.5rem', fontSize: '1.125rem' }}
                 />
-              </Loading>
+              </div>
             </div>
-          </div>
+          </Loading>
         </div>
       </div>
     </div>
