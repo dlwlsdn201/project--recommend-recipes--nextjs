@@ -52,9 +52,12 @@ export default function Header() {
     }
   }, [animateType]);
 
+  // 로그인 페이지(/)에서는 nav를 숨김 → pathname이 /home 등으로 바뀐 뒤 Transition enter 단계에서 메인과 동시에 페이드인
+  const showNav = isLogin && router.pathname !== '/';
+
   return (
     <header className="sticky top-0 z-10 shrink-0 h-24 bg-base-100 text-base-content shadow-sm">
-      {isLogin && (
+      {showNav && (
         <nav className=" flex max-w-[100%] h-full  items-center justify-between p-6 laptop:px-8" aria-label="Global">
           <div className="flex laptop:flex-1 items-center">
             <Link href="/home" className="-m-1.5 p-1.5">
