@@ -2,6 +2,16 @@
 
 Google Gemini API를 활용해 사용자가 입력한 재료를 기반으로 맞춤형 요리 레시피를 추천하는 웹 애플리케이션입니다.
 
+## 프리뷰
+
+> 로그인 페이지
+
+<img src="https://github.com/user-attachments/assets/508bfedf-a5dc-4f2e-9658-6bd00cd9085f" width="640" height="480"/>
+
+> 메인 페이지
+
+<img src="https://github.com/user-attachments/assets/2bed6887-e542-4ffa-b3be-0a600fffc398" width="640" height="480"/>
+
 ## 주요 기능
 
 - **로그인**: 세션 기반 인증 (Next.js API Routes)
