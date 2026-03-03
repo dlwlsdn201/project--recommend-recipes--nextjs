@@ -14,7 +14,7 @@ const Login = ({ handleLogin }) => {
     <div className="flex min-h-full flex-1 flex-col justify-center px-4 pb-32 md:px-6 max-w-md mx-auto">
       <div className="card bg-base-100 shadow-xl rounded-2xl p-6 md:p-8">
         <div className="flex flex-col items-center">
-          <Image src="/images/logo.png" alt="냉장고를 부탁해" width={120} height={80} className="object-contain" />
+          <Image src="/images/logo.png" alt="logo" width={100} height={100} className="object-contain rounded-lg" />
           <h2 className="mt-6 text-center text-h1 tracking-tight text-base-content">로 그 인</h2>
         </div>
 
