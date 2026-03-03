@@ -72,9 +72,9 @@ const Contact = (): React.ReactElement => {
     <Loading spinning={loading}>
       <div className="root-container flex-1 basis-0 max-w-2xl">
         <div className="card bg-base-100 shadow-xl rounded-2xl p-6 md:p-8">
-          <span id="title-wrapper">
-            <h1 className="text-center text-h1 text-base-content">Contact Me</h1>
-          </span>
+          <div id="title-wrapper">
+            <span className="text-center text-h2 tablet:text-h1 text-base-content">Contact Me</span>
+          </div>
           <form className="mt-8">
             <div id="form-wrapper" className="grid grid-cols-1 gap-8">
               <Name value={name} setName={setName} />

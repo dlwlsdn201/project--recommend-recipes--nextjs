@@ -88,19 +88,18 @@ const MainComponent = () => {
 
   const isDisabled = Boolean(!material1 && !material2 && !material3);
   return (
-    <div
-      className="root-container max-w-2xl w-full mx-auto"
-      data-testid="homePage-description"
-    >
+    <div className="root-container max-w-2xl w-full mx-auto" data-testid="homePage-description">
       <div className="flex flex-col gap-8">
         {/* 설명 카드 */}
         <div className="card bg-base-100 shadow-xl rounded-2xl">
           <div className="card-body">
-            <h1 className="text-h1 text-base-content">집에 있는 재료들로 무엇을 만들 수 있을까요?</h1>
-            <p className="text-body1 text-base-content/70 my-4">
+            <span className="text-h2 tablet:text-h1 text-base-content">
+              집에 있는 재료들로 무엇을 만들 수 있을까요?
+            </span>
+            <p className="text-body2 tablet:text-body1 text-base-content/70 my-4">
               작성한 재료들과 선택한 음식 종류를 기반으로 Google Gemini가 추천 음식 레시피 몇 가지를 소개해 줄 것입니다.
             </p>
-            <ul className="list-disc text-body1 text-base-content/70 leading-loose ml-6">
+            <ul className="list-disc text-body2 tablet:text-body1 text-base-content/70 leading-loose ml-6">
               <li>원하는 결과를 얻기 위해 재료는 최소 1가지 이상 입력해주세요!</li>
               <li>총 2개의 음식 레시피가 추천돼요!</li>
               <li>음식이 아닌 재료를 입력하면 정확한 결과가 나오지 않아요!</li>
