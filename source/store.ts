@@ -2,12 +2,12 @@ import { create } from 'zustand';
 import { INTERFACE_commonStore, INTERFACE_loginStore, INTERFACE_mainStore } from './types';
 
 // [store] 전역 데이터
-export const rootStore = (set) => ({});
+// export const rootStore = (set) => ({});
 
 export const commonStore = create<INTERFACE_commonStore>((set) => ({
   isLogin: false,
   setIsLogin: (value: boolean) => set(() => ({ isLogin: value })),
-  loading: true,
+  loading: false,
   setLoading: (value: boolean) => set(() => ({ loading: value })),
   isError: false,
   setIsError: (value: boolean) => set(() => ({ isError: value })),
